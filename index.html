@@ -27,6 +27,23 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background-color: var(--bg-sky); font-family: 'Montserrat', sans-serif; overflow-x: hidden; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 
+        /* --- FIXED LANGUAGE SWITCHER --- */
+        .lang-container {
+            position: fixed; top: 15px; right: 15px; z-index: 2000;
+            background: rgba(255, 255, 255, 0.85); padding: 5px 10px;
+            border-radius: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex; gap: 8px; font-size: 0.75rem; font-weight: 600;
+            backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(90,24,39,0.1);
+        }
+        .lang-btn {
+            color: #666; cursor: pointer; transition: color 0.3s;
+            background: none; border: none; font-family: inherit; font-size: inherit; outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .lang-btn:hover, .lang-btn.active { color: var(--accent-maroon); }
+        .lang-divider { color: #ccc; }
+
         /* --- INTRO SCREEN MOBILIZED --- */
         #intro-screen {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
@@ -70,12 +87,9 @@
         .hero {
             position: relative; height: 100vh; height: -webkit-fill-available;
             display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; padding: 24px;
-            
-            /* 1. Default layout: Displays landscape image on Laptops and Tablets */
             background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('wedding_bg_desktop.jpg') no-repeat center center/cover;
         }
 
-        /* 2. Responsive switch: Displays vertical image on Mobile Screens (768px wide or smaller) */
         @media(max-width: 768px) {
             .hero {
                 background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('wedding_bg_mobile.jpg') no-repeat center center/cover;
@@ -122,10 +136,19 @@
             .rsvp-header-main { font-size: 1.6rem; }
             .airplane-svg { width: 150px; }
             .reveal-banner { font-size: 1.5rem; padding: 6px 18px; }
+            .lang-container { top: 10px; right: 10px; padding: 4px 8px; }
         }
     </style>
 </head>
 <body>
+
+    <div class="lang-container">
+        <button class="lang-btn active" onclick="switchLanguage('en')">EN</button>
+        <span class="lang-divider">|</span>
+        <button class="lang-btn" onclick="switchLanguage('hi')">हिन</button>
+        <span class="lang-divider">|</span>
+        <button class="lang-btn" onclick="switchLanguage('gu')">ગુજ</button>
+    </div>
 
     <div id="intro-screen">
         <div class="cloud c1"></div><div class="cloud c2"></div>
@@ -134,51 +157,51 @@
             <svg class="airplane-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
             </svg>
-            <div class="takeoff-banner">Charvi taking off with Yash</div>
+            <div class="takeoff-banner" id="trans-takeoffBanner">Charvi taking off with Yash</div>
         </div>
-        <div class="launch-text" id="launchText">Tap To Launch</div>
+        <div class="launch-text" id="trans-launchText">Tap To Launch</div>
     </div>
 
     <main id="main-content">
         <section class="hero">
             <div class="hero-hashtag">#CharviSaidYash</div>
-            <h1 class="hero-title">Wedding of Charvi & Yash</h1>
-            <p class="hero-details">5 – 6 December 2026 &bull; Surat, Gujarat, India</p>
-            <p class="hero-details" style="color: #dfdcd4; font-size: 0.85rem;">5th: Haldi, Mehendi & Sangeet &nbsp;|&nbsp; 6th: Wedding</p>
-            <a href="#rsvpFormSection" class="btn-confirm">Confirm Attendance</a>
+            <h1 class="hero-title" id="trans-heroTitle">Wedding of Charvi & Yash</h1>
+            <p class="hero-details" id="trans-heroDetails1">5 – 6 December 2026 &bull; Surat, Gujarat, India</p>
+            <p class="hero-details" id="trans-heroDetails2" style="color: #dfdcd4; font-size: 0.85rem;">5th: Haldi, Mehendi & Sangeet &nbsp;|&nbsp; 6th: Wedding</p>
+            <a href="#rsvpFormSection" class="btn-confirm" id="trans-btnConfirm">Confirm Attendance</a>
         </section>
 
         <section id="rsvpFormSection" class="rsvp-container">
-            <p class="rsvp-meta-header">Wedding of Charvi & Yash</p>
-            <p class="rsvp-deadline">RSVP BY 18 November 2026</p>
-            <h2 class="rsvp-header-main">Confirm Your Presence</h2>
+            <p class="rsvp-meta-header" id="trans-rsvpMeta">Wedding of Charvi & Yash</p>
+            <p class="rsvp-deadline" id="trans-rsvpDeadline">RSVP BY 18 November 2026</p>
+            <h2 class="rsvp-header-main" id="trans-rsvpMainHeader">Confirm Your Presence</h2>
 
             <form id="weddingForm">
                 <div class="form-group">
-                    <label for="guestName">Full Name</label>
+                    <label id="trans-labelName" for="guestName">Full Name</label>
                     <input type="text" id="guestName" placeholder="Your name" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="guestPhone">Mobile Number</label>
+                    <label id="trans-labelPhone" for="guestPhone">Mobile Number</label>
                     <input type="tel" id="guestPhone" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Will you be attending?</label>
+                    <label id="trans-labelAttending">Will you be attending?</label>
                     <div class="radio-container">
-                        <label class="radio-label"><input type="radio" name="attendance" value="Attending" id="attendingRadio" checked> Super Excited To Be There! 🎉</label>
-                        <label class="radio-label"><input type="radio" name="attendance" value="Not Attending" id="notAttendingRadio"> Regretfully, I won't be able to join 😔</label>
+                        <label class="radio-label"><input type="radio" name="attendance" value="Attending" id="attendingRadio" checked> <span id="trans-radioYes">Super Excited To Be There! 🎉</span></label>
+                        <label class="radio-label"><input type="radio" name="attendance" value="Not Attending" id="notAttendingRadio"> <span id="trans-radioNo">Regretfully, I won't be able to join 😔</span></label>
                     </div>
                 </div>
 
                 <div class="form-group" id="travelGroup">
-                    <label for="travelMode">How are you travelling to Surat?</label>
+                    <label id="trans-labelTravel" for="travelMode">How are you travelling to Surat?</label>
                     <select id="travelMode">
-                        <option value="Not Specified">Select Mode of Transport</option>
-                        <option value="Airways">Airways ✈️</option>
-                        <option value="Railways">Railways 🚂</option>
-                        <option value="Roadways">Roadways 🚗</option>
+                        <option value="Not Specified" id="trans-optDefault">Select Mode of Transport</option>
+                        <option value="Airways" id="trans-optAir">Airways ✈️</option>
+                        <option value="Railways" id="trans-optRail">Railways 🚂</option>
+                        <option value="Roadways" id="trans-optRoad">Roadways 🚗</option>
                     </select>
                 </div>
 
@@ -189,6 +212,134 @@
     </main>
 
     <script>
+        // TRANSLATION DICTIONARY
+        const translations = {
+            en: {
+                takeoffBanner: "Charvi taking off with Yash",
+                launchText: "Tap To Launch",
+                heroTitle: "Wedding of Charvi & Yash",
+                heroDetails1: "5 – 6 December 2026 • Surat, Gujarat, India",
+                heroDetails2: "5th: Haldi, Mehendi & Sangeet | 6th: Wedding",
+                btnConfirm: "Confirm Attendance",
+                rsvpMeta: "Wedding of Charvi & Yash",
+                rsvpDeadline: "RSVP BY 18 November 2026",
+                rsvpMainHeader: "Confirm Your Presence",
+                labelName: "Full Name",
+                placeholderName: "Your name",
+                labelPhone: "Mobile Number",
+                placeholderPhone: "10-digit mobile number",
+                labelAttending: "Will you be attending?",
+                radioYes: "Super Excited To Be There! 🎉",
+                radioNo: "Regretfully, I won't be able to join 😔",
+                labelTravel: "How are you travelling to Surat?",
+                optDefault: "Select Mode of Transport",
+                optAir: "Airways ✈️",
+                optRail: "Railways 🚂",
+                optRoad: "Roadways 🚗",
+                btnSubmit: "Confirm Attendance",
+                sending: "Sending...",
+                thankYou: "Thank You!",
+                alertSuccess: "Your RSVP response has been successfully sent to Charvi & Yash!",
+                alertError: "Error submitting form. Please try again."
+            },
+            hi: {
+                takeoffBanner: "चार्वी चली यश के साथ उड़ान भरने",
+                launchText: "शुरू करने के लिए टैप करें",
+                heroTitle: "चार्वी और यश का विवाह",
+                heroDetails1: "5 – 6 दिसंबर 2026 • सूरत, गुजरात, भारत",
+                heroDetails2: "5 तारीख: हल्दी, मेहंदी और संगीत | 6 तारीख: शादी",
+                btnConfirm: "उपस्थिति की पुष्टि करें",
+                rsvpMeta: "चार्वी और यश का विवाह",
+                rsvpDeadline: "RSVP की अंतिम तिथि 18 नवंबर 2026",
+                rsvpMainHeader: "अपनी उपस्थिति दर्ज करें",
+                labelName: "पूरा नाम",
+                placeholderName: "आपका नाम",
+                labelPhone: "मोबाइल नंबर",
+                placeholderPhone: "10 अंकों का मोबाइल नंबर",
+                labelAttending: "क्या आप शादी में शामिल होंगे?",
+                radioYes: "आने के लिए बेहद उत्साहित हूँ! 🎉",
+                radioNo: "खेद है, मैं शामिल नहीं हो पाऊँगा/पाऊँगी 😔",
+                labelTravel: "आप सूरत कैसे आ रहे हैं?",
+                optDefault: "यात्रा का साधन चुनें",
+                optAir: "हवाई यात्रा ✈️",
+                optRail: "रेल यात्रा 🚂",
+                optRoad: "सड़क मार्ग 🚗",
+                btnSubmit: "उपस्थिति की पुष्टि करें",
+                sending: "भेजा जा रहा है...",
+                thankYou: "धन्यवाद!",
+                alertSuccess: "आपका RSVP संदेश सफलतापूर्वक चार्वी और यश तक पहुंच गया है!",
+                alertError: "सबमिट करने में त्रुटि। कृपया पुनः प्रयास करें।"
+            },
+            gu: {
+                takeoffBanner: "ચાર્વી ચાલી યશ સાથે ઉડાન ભરવા",
+                launchText: "શરૂ કરવા માટે ટેપ કરો",
+                heroTitle: "ચાર્વી અને યશ ના લગ્ન",
+                heroDetails1: "5 – 6 ડિસેમ્બર 2026 • સુરત, ગુજરાત, ભારત",
+                heroDetails2: "5મી: હલ્દી, મહેંદી અને સંગીત | 6ઠ્ઠી: લગ્ન",
+                btnConfirm: "હાજરીની ખાતરી કરો",
+                rsvpMeta: "ચાર્વી અને યશ ના લગ્ન",
+                rsvpDeadline: "RSVP ની છેલ્લી તારીખ 18 નવેમ્બર 2026",
+                rsvpMainHeader: "તમારી હાજરી નોંધાવો",
+                labelName: "પૂરું નામ",
+                placeholderName: "તમારું નામ",
+                labelPhone: "મોબાઇલ નંબર",
+                placeholderPhone: "10 અંકનો મોબાઇલ નંબર",
+                labelAttending: "શું તમે લગ્નમાં હાજરી આપશો?",
+                radioYes: "આવવા માટે ખૂબ જ ઉત્સાહિત છું! 🎉",
+                radioNo: "દિલગીરી સાથે, હું હાજર નહીં રહી શકું 😔",
+                labelTravel: "તમે સુરત કેવી રીતે આવી રહ્યા છો?",
+                optDefault: "મુસાફરીનું માધ્યમ પસંદ કરો",
+                optAir: "હવાઈ માર્ગ ✈️",
+                optRail: "રેલવે માર્ગ 🚂",
+                optRoad: "રોડ માર્ગ 🚗",
+                btnSubmit: "હાજરીની ખાતરી કરો",
+                sending: "મોકલી રહ્યું છે...",
+                thankYou: "ધન્યવાદ!",
+                alertSuccess: "તમારો RSVP સંદેશ સફળતાપૂર્વક ચાર્વી અને યશ સુધી પહોંચી ગયો છે!",
+                alertError: "સબમિટ કરવામાં ભૂલ આવી. કૃપા કરીને ફરી પ્રયાસ કરો."
+            }
+        };
+
+        let currentLang = 'en';
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            
+            // Update active state button visual styling
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Apply translations to layout
+            document.getElementById('trans-takeoffBanner').innerText = translations[lang].takeoffBanner;
+            document.getElementById('trans-launchText').innerText = translations[lang].launchText;
+            document.getElementById('trans-heroTitle').innerText = translations[lang].heroTitle;
+            document.getElementById('trans-heroDetails1').innerHTML = translations[lang].heroDetails1;
+            document.getElementById('trans-heroDetails2').innerHTML = translations[lang].heroDetails2;
+            document.getElementById('trans-btnConfirm').innerText = translations[lang].btnConfirm;
+            document.getElementById('trans-rsvpMeta').innerText = translations[lang].rsvpMeta;
+            document.getElementById('trans-rsvpDeadline').innerText = translations[lang].rsvpDeadline;
+            document.getElementById('trans-rsvpMainHeader').innerText = translations[lang].rsvpMainHeader;
+            document.getElementById('trans-labelName').innerText = translations[lang].labelName;
+            document.getElementById('guestName').placeholder = translations[lang].placeholderName;
+            document.getElementById('trans-labelPhone').innerText = translations[lang].labelPhone;
+            document.getElementById('guestPhone').placeholder = translations[lang].placeholderPhone;
+            document.getElementById('trans-labelAttending').innerText = translations[lang].labelAttending;
+            document.getElementById('trans-radioYes').innerText = translations[lang].radioYes;
+            document.getElementById('trans-radioNo').innerText = translations[lang].radioNo;
+            document.getElementById('trans-labelTravel').innerText = translations[lang].labelTravel;
+            document.getElementById('trans-optDefault').innerText = translations[lang].optDefault;
+            document.getElementById('trans-optAir').innerText = translations[lang].optAir;
+            document.getElementById('trans-optRail').innerText = translations[lang].optRail;
+            document.getElementById('trans-optRoad').innerText = translations[lang].optRoad;
+            
+            // Manage submit button translation safely depending on form state
+            const submitBtn = document.getElementById('submitBtn');
+            if (!submitBtn.disabled) {
+                submitBtn.innerText = translations[lang].btnSubmit;
+            }
+        }
+
+        // --- CORE FUNCTIONALITY ---
         const flightContainer = document.getElementById('flightContainer');
         const launchText = document.getElementById('launchText');
         const introScreen = document.getElementById('intro-screen');
@@ -205,7 +356,7 @@
 
         flightContainer.addEventListener('click', () => {
             flightContainer.classList.add('takeoff');
-            launchText.style.opacity = '0';
+            if(launchText) launchText.style.opacity = '0';
             setTimeout(() => {
                 introScreen.style.transform = 'translateY(-100vh)';
                 mainContent.style.opacity = '1';
@@ -230,7 +381,7 @@
         form.addEventListener('submit', e => {
             e.preventDefault();
             submitBtn.disabled = true;
-            submitBtn.innerText = 'Sending...';
+            submitBtn.innerText = translations[currentLang].sending;
 
             const formData = new FormData();
             formData.append('guestName', document.getElementById('guestName').value);
@@ -242,16 +393,17 @@
 
             fetch(scriptURL, { method: 'POST', body: formData})
                 .then(response => {
-                    submitBtn.innerText = 'Thank You!';
-                    alert('Your RSVP response has been successfully sent to Charvi & Yash!');
+                    submitBtn.innerText = translations[currentLang].thankYou;
+                    alert(translations[currentLang].alertSuccess);
                     form.reset();
                     travelGroup.style.display = 'block';
                     submitBtn.disabled = false;
+                    submitBtn.innerText = translations[currentLang].btnSubmit;
                 })
                 .catch(error => {
                     submitBtn.disabled = false;
-                    submitBtn.innerText = 'Confirm Attendance';
-                    alert('Error submitting form. Please try again.');
+                    submitBtn.innerText = translations[currentLang].btnSubmit;
+                    alert(translations[currentLang].alertError);
                 });
         });
     </script>
