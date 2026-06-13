@@ -2,8 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charvi & Yash Wedding RSVP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Charvi & Yash Wedding 🎉</title>
+    
+    <meta property="og:title" content=" Wedding of Charvi & Yash" />
+    <meta property="og:description" content="We are taking off! Tap to watch our airplane takeoff and RSVP to confirm your presence. ✈️💍" />
+    <meta property="og:image" content="https://yashrajput14394-cpu.github.io/CharviSaidYash/wedding_bg.jpg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yashrajput14394-cpu.github.io/CharviSaidYash/" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -18,8 +25,9 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background-color: var(--bg-sky); font-family: 'Montserrat', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
+        body { background-color: var(--bg-sky); font-family: 'Montserrat', sans-serif; overflow-x: hidden; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 
+        /* --- INTRO SCREEN MOBILIZED --- */
         #intro-screen {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background-color: var(--bg-sky); display: flex; flex-direction: column;
@@ -33,65 +41,79 @@
         .c2 { width: 180px; height: 60px; top: 60%; left: -200px; animation-duration: 18s; animation-delay: 5s; }
         @keyframes floatClouds { 0% { left: -200px; } 100% { left: 100vw; } }
 
-        .flight-container { position: relative; width: 400px; height: 200px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 5; }
-        .airplane-svg { width: 220px; height: auto; fill: var(--accent-maroon); filter: drop-shadow(0 10px 15px rgba(90,24,39,0.15)); }
+        .flight-container { position: relative; width: 100%; max-width: 400px; height: 200px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 5; -webkit-tap-highlight-color: transparent; }
+        .airplane-svg { width: 180px; height: auto; fill: var(--accent-maroon); filter: drop-shadow(0 10px 15px rgba(90,24,39,0.15)); }
         
         .takeoff-banner {
             position: absolute; bottom: 10px; background: white; padding: 8px 20px; border-radius: 50px;
-            font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.95rem; color: var(--accent-maroon);
+            font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.9rem; color: var(--accent-maroon);
             box-shadow: 0 5px 15px rgba(0,0,0,0.05); white-space: nowrap; border: 1px solid rgba(90,24,39,0.1);
         }
 
         .reveal-banner {
-            position: absolute; right: 100%; top: 35%; background: white; padding: 10px 30px; border: 2px dashed var(--accent-maroon);
-            border-right: none; font-family: 'Alex Brush', cursive; font-size: 2.2rem; color: var(--accent-maroon);
-            white-space: nowrap; opacity: 0; transform: scaleX(0); transform-origin: right center; transition: transform 0.8s ease, opacity 0.5s ease;
+            position: absolute; right: 50%; transform: translateX(50%) scaleX(0); top: 30%; background: white; padding: 8px 25px; border: 2px dashed var(--accent-maroon);
+            font-family: 'Alex Brush', cursive; font-size: 1.8rem; color: var(--accent-maroon);
+            white-space: nowrap; opacity: 0; transform-origin: center; transition: transform 0.8s ease, opacity 0.5s ease; z-index: 6;
         }
-        .reveal-banner::before { content: ''; position: absolute; right: -15px; top: 50%; width: 15px; height: 2px; background: var(--accent-maroon); }
 
-        .launch-text { color: #726c63; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 5px; margin-top: 30px; animation: pulse 1.5s infinite; z-index: 5; }
+        .launch-text { color: #726c63; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; margin-top: 20px; animation: pulse 1.5s infinite; z-index: 5; }
         @keyframes pulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
 
-        .flight-container.takeoff { animation: flyAwayOut 2.2s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards; }
+        .flight-container.takeoff { animation: flyAwayOut 2s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards; }
         .flight-container.takeoff .takeoff-banner { opacity: 0; }
-        .flight-container.takeoff .reveal-banner { opacity: 1; transform: scaleX(1); }
-        @keyframes flyAwayOut { 0% { transform: translate(0, 0) rotate(0deg); } 100% { transform: translate(120vw, -120vh) rotate(-25deg); } }
+        .flight-container.takeoff .reveal-banner { opacity: 1; transform: translateX(50%) scaleX(1); }
+        @keyframes flyAwayOut { 0% { transform: translate(0, 0) rotate(0deg) scale(1); } 100% { transform: translate(100vw, -100vh) rotate(-20deg) scale(0.5); } }
 
         #main-content { background-color: var(--bg-cream); min-height: 100vh; opacity: 0; transition: opacity 1s ease; }
         
+        /* --- HERO SCREEN MOBILIZED --- */
         .hero {
-            position: relative; height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('wedding_bg.jpg') no-repeat center center/cover;
-            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; padding: 20px;
+            position: relative; height: 100vh; height: -webkit-fill-available;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('wedding_bg.jpg') no-repeat center center/cover;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; padding: 24px;
         }
 
-        .hero-hashtag { font-family: 'Alex Brush', cursive; font-size: 4rem; margin-bottom: 15px; }
-        .hero-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; text-transform: uppercase; letter-spacing: 4px; margin: 15px 0; font-weight: 400; }
-        .hero-details { font-size: 1.05rem; margin: 10px 0; weight: 300; letter-spacing: 1.5px; }
+        .hero-hashtag { font-family: 'Alex Brush', cursive; font-size: 3.5rem; margin-bottom: 10px; text-shadow: 0 2px 8px rgba(0,0,0,0.4); }
+        .hero-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 3px; margin: 12px 0; font-weight: 400; text-shadow: 0 2px 8px rgba(0,0,0,0.4); }
+        .hero-details { font-size: 0.95rem; margin: 8px 0; font-weight: 300; letter-spacing: 1px; text-shadow: 0 1px 5px rgba(0,0,0,0.4); }
 
-        .btn-confirm { margin-top: 35px; background-color: transparent; color: white; border: 1px solid white; padding: 14px 35px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; text-decoration: none; }
+        .btn-confirm { margin-top: 30px; background-color: transparent; color: white; border: 1px solid white; padding: 12px 30px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; text-decoration: none; transition: background 0.3s; -webkit-tap-highlight-color: transparent; }
         .btn-confirm:hover { background-color: white; color: var(--text-dark); }
 
-        .rsvp-container { padding: 100px 20px; max-width: 550px; margin: 0 auto; text-align: center; color: var(--text-dark); }
-        .rsvp-meta-header { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 3px; color: #666; margin-bottom: 8px; }
-        .rsvp-deadline { color: var(--accent-maroon); font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.3rem; margin-bottom: 45px; }
-        .rsvp-header-main { font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 400; margin-bottom: 50px; }
+        /* --- RSVP CONTAINER MOBILIZED --- */
+        .rsvp-container { padding: 60px 20px; max-width: 480px; margin: 0 auto; text-align: center; color: var(--text-dark); }
+        .rsvp-meta-header { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: #666; margin-bottom: 6px; }
+        .rsvp-deadline { color: var(--accent-maroon); font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.15rem; margin-bottom: 35px; }
+        .rsvp-header-main { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 400; margin-bottom: 35px; }
 
-        .form-group { margin-bottom: 40px; text-align: left; }
-        .form-group label { display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: #333; margin-bottom: 12px; font-weight: 600; }
+        .form-group { margin-bottom: 30px; text-align: left; }
+        .form-group label { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px; color: #333; margin-bottom: 10px; font-weight: 600; }
         
         .form-group input[type="text"], .form-group input[type="tel"], .form-group select {
-            width: 100%; padding: 10px 0; border: none; border-bottom: 1px solid #b5af9f; background: transparent; font-size: 1.05rem; font-family: inherit; outline: none; color: var(--text-dark);
+            width: 100%; padding: 12px 0; border: none; border-bottom: 1px solid #b5af9f; background: transparent; font-size: 1rem; font-family: inherit; outline: none; color: var(--text-dark); border-radius: 0; -webkit-appearance: none;
         }
 
-        .radio-container { display: flex; flex-direction: column; gap: 15px; margin-top: 15px; }
-        .radio-label { display: flex; align-items: center; gap: 12px; font-size: 1rem; cursor: pointer; }
-        .radio-label input { accent-color: var(--accent-maroon); width: 20px; height: 20px; }
+        .form-group select {
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'><path d='M0 3l5 5 5-5z' fill='%23222'/></svg>");
+            background-repeat: no-repeat; background-position: right center; padding-right: 20px;
+        }
 
-        .submit-btn { background-color: #111111; color: white; border: none; width: 100%; padding: 18px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; margin-top: 20px; }
-        .footer-hashtag { margin-top: 80px; font-family: 'Alex Brush', cursive; font-size: 3rem; color: var(--gold-muted); }
+        .radio-container { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
+        .radio-label { display: flex; align-items: center; gap: 10px; font-size: 0.95rem; cursor: pointer; line-height: 1.4; -webkit-tap-highlight-color: transparent; }
+        .radio-label input { accent-color: var(--accent-maroon); width: 22px; height: 22px; flex-shrink: 0; }
 
-        @media(max-width: 500px) { .flight-container { transform: scale(0.85); } .hero-hashtag { font-size: 3rem; } .hero-title { font-size: 1.6rem; } }
+        .submit-btn { background-color: #111111; color: white; border: none; width: 100%; padding: 16px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; margin-top: 15px; border-radius: 4px; -webkit-tap-highlight-color: transparent; }
+        .footer-hashtag { margin-top: 60px; font-family: 'Alex Brush', cursive; font-size: 2.5rem; color: var(--gold-muted); }
+
+        /* --- MOBILE SPECIFIC FIXES --- */
+        @media(max-width: 480px) {
+            .hero-hashtag { font-size: 2.8rem; }
+            .hero-title { font-size: 1.4rem; letter-spacing: 2px; }
+            .hero-details { font-size: 0.85rem; }
+            .rsvp-header-main { font-size: 1.6rem; }
+            .airplane-svg { width: 150px; }
+            .reveal-banner { font-size: 1.5rem; padding: 6px 18px; }
+        }
     </style>
 </head>
 <body>
@@ -113,7 +135,7 @@
             <div class="hero-hashtag">#CharviSaidYash</div>
             <h1 class="hero-title">Wedding of Charvi & Yash</h1>
             <p class="hero-details">5 – 6 December 2026 &bull; Surat, Gujarat, India</p>
-            <p class="hero-details" style="color: #dfdcd4;">5th: Haldi, Mehendi & Sangeet &nbsp;|&nbsp; 6th: Wedding</p>
+            <p class="hero-details" style="color: #dfdcd4; font-size: 0.85rem;">5th: Haldi, Mehendi & Sangeet &nbsp;|&nbsp; 6th: Wedding</p>
             <a href="#rsvpFormSection" class="btn-confirm">Confirm Attendance</a>
         </section>
 
@@ -184,7 +206,7 @@
         const form = document.getElementById('weddingForm');
         const submitBtn = document.getElementById('submitBtn');
         
-        // REPLACE THE URL LINK BELOW WITH YOUR GOOGLE WEB APP URL
+        // YOUR EXCEL SCRIPT LINK CONFIRMED HERE
         const scriptURL = 'https://script.google.com/macros/s/AKfycbx0sPEvT9Kbly3zfUWYCf-M9Rs6MdjUSTga-9SDbICRpfKMbtlEY5Ff_8LqNx9Ixnig/exec';
 
         form.addEventListener('submit', e => {
