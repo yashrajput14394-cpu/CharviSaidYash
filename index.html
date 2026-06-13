@@ -44,46 +44,33 @@
         .lang-btn:hover, .lang-btn.active { color: var(--accent-maroon); transform: scale(1.05); }
         .lang-divider { color: #e0d0d0; font-weight: 300; }
 
-        /* --- INTRO SCREEN --- */
+        /* --- STABLE INTRO SCREEN --- */
         #intro-screen {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background-color: var(--bg-sky); display: flex; flex-direction: column;
             justify-content: center; align-items: center; z-index: 1000;
-            transition: opacity 0.5s ease, transform 0.8s cubic-bezier(0.7, 0, 0.3, 1); overflow: hidden;
-            opacity: 1;
+            transition: transform 0.5s ease-out, opacity 0.4s ease-out; overflow: hidden;
         }
 
-        .cloud { position: absolute; background: rgba(255, 255, 255, 0.75); border-radius: 100px; animation: floatClouds 20s linear infinite; z-index: 1; }
-        .cloud::before, .cloud::after { content: ''; position: absolute; background: rgba(255, 255, 255, 0.75); border-radius: 50%; }
-        .c1 { width: 120px; height: 40px; top: 20%; left: -150px; animation-duration: 25s; }
-        .c2 { width: 180px; height: 60px; top: 60%; left: -200px; animation-duration: 18s; animation-delay: 5s; }
-        @keyframes floatClouds { 0% { left: -200px; } 100% { left: 100vw; } }
-
-        .flight-container { position: relative; width: 100%; max-width: 400px; height: 200px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 5; -webkit-tap-highlight-color: transparent; }
-        .airplane-svg { width: 180px; height: auto; fill: var(--accent-maroon); filter: drop-shadow(0 10px 15px rgba(107,45,92,0.15)); }
+        .flight-container { 
+            position: relative; display: flex; flex-direction: column; 
+            align-items: center; justify-content: center; cursor: pointer; 
+            z-index: 5; -webkit-tap-highlight-color: transparent; padding: 20px;
+        }
+        .airplane-svg { width: 150px; height: auto; fill: var(--accent-maroon); filter: drop-shadow(0 10px 15px rgba(107,45,92,0.15)); margin-bottom: 25px; }
         
         .takeoff-banner {
-            position: absolute; bottom: 10px; background: white; padding: 8px 20px; border-radius: 50px;
-            font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.9rem; color: var(--accent-maroon);
+            background: white; padding: 12px 28px; border-radius: 50px;
+            font-family: 'Playfair Display', serif; font-style: italic; font-size: 1rem; color: var(--accent-maroon);
             box-shadow: 0 5px 15px rgba(0,0,0,0.05); white-space: nowrap; border: 1px solid rgba(107,45,92,0.1);
+            text-align: center;
         }
 
-        .reveal-banner {
-            position: absolute; right: 50%; transform: translateX(50%) scaleX(0); top: 30%; background: white; padding: 8px 25px; border: 2px dashed var(--accent-maroon);
-            font-family: 'Alex Brush', cursive; font-size: 1.8rem; color: var(--accent-maroon);
-            white-space: nowrap; opacity: 0; transform-origin: center; transition: transform 0.8s ease, opacity 0.5s ease; z-index: 6;
-        }
-
-        .launch-text { color: #8a7578; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; margin-top: 20px; animation: pulse 1.5s infinite; z-index: 5; }
+        .launch-text { color: #8a7578; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; margin-top: 25px; animation: pulse 1.5s infinite; }
         @keyframes pulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
 
-        .flight-container.takeoff { animation: flyAwayOut 2s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards; }
-        .flight-container.takeoff .takeoff-banner { opacity: 0; }
-        .flight-container.takeoff .reveal-banner { opacity: 1; transform: translateX(50%) scaleX(1); }
-        @keyframes flyAwayOut { 0% { transform: translate(0, 0) rotate(0deg) scale(1); } 100% { transform: translate(100vw, -100vh) rotate(-20deg) scale(0.5); } }
-
         /* --- MAIN APP SECTION --- */
-        #main-content { background-color: var(--bg-cream); min-height: 100vh; display: none; opacity: 0; transition: opacity 0.8s ease; }
+        #main-content { background-color: var(--bg-cream); min-height: 100vh; display: none; opacity: 0; transition: opacity 0.5s ease; }
         
         /* --- HERO SECTION --- */
         .hero {
@@ -147,8 +134,7 @@
             .hero-title { font-size: 1.4rem; letter-spacing: 2px; }
             .hero-details { font-size: 0.85rem; }
             .rsvp-header-main { font-size: 1.6rem; }
-            .airplane-svg { width: 150px; }
-            .reveal-banner { font-size: 1.5rem; padding: 6px 18px; }
+            .airplane-svg { width: 130px; }
             .lang-container { top: 12px; right: 12px; padding: 6px 12px; }
         }
     </style>
@@ -164,18 +150,140 @@
     </div>
 
     <div id="intro-screen">
-        <div class="cloud c1"></div><div class="cloud c2"></div>
         <div class="flight-container" id="flightContainer">
-            <div class="reveal-banner">#CharviSaidYash</div>
             <svg class="airplane-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
             </svg>
             <div class="takeoff-banner" id="trans-takeoffBanner">Charvi taking off with Yash</div>
+            <div class="launch-text" id="trans-launchText">Tap To Launch</div>
         </div>
-        <div class="launch-text" id="trans-launchText">Tap To Launch</div>
     </div>
 
     <main id="main-content">
         <section class="hero">
             <div class="hero-hashtag">#CharviSaidYash</div>
-            <h1 class="hero-title" id="trans-hero
+            <h1 class="hero-title" id="trans-heroTitle">Wedding of Charvi & Yash</h1>
+            <p class="hero-details" id="trans-heroDetails1">5 – 6 December 2026 &bull; Surat, Gujarat, India</p>
+            <p class="hero-details" id="trans-heroDetails2" style="color: #fae0e4; font-size: 0.85rem; line-height: 1.6;">5th: Haldi, Mehendi & Sangeet <br> 6th: Wedding</p>
+            <a href="#rsvpFormSection" class="btn-confirm" id="trans-btnConfirm">Confirm Attendance</a>
+        </section>
+
+        <section id="rsvpFormSection" class="rsvp-container">
+            <p class="rsvp-meta-header" id="trans-rsvpMeta">Wedding of Charvi & Yash</p>
+            <p class="rsvp-deadline" id="trans-rsvpDeadline">RSVP BY 18 November 2026</p>
+            <h2 class="rsvp-header-main" id="trans-rsvpMainHeader">Confirm Your Presence</h2>
+
+            <form id="weddingForm">
+                <div class="form-group">
+                    <label id="trans-labelName" for="guestName">Full Name</label>
+                    <input type="text" id="guestName" placeholder="Your name" required>
+                </div>
+
+                <div class="form-group">
+                    <label id="trans-labelPhone" for="guestPhone">Mobile Number</label>
+                    <input type="tel" id="guestPhone" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
+                </div>
+
+                <div class="form-group">
+                    <label id="trans-labelAttending">Will you be attending?</label>
+                    <div class="radio-container">
+                        <label class="radio-label"><input type="radio" name="attendance" value="Attending" id="attendingRadio" checked> <span id="trans-radioYes">Super Excited To Be There! 🎉</span></label>
+                        <label class="radio-label"><input type="radio" name="attendance" value="Not Attending" id="notAttendingRadio"> <span id="trans-radioNo">Regretfully, I won't be able to join 😔</span></label>
+                    </div>
+                </div>
+
+                <div class="form-group" id="travelGroup">
+                    <label id="trans-labelTravel" for="travelMode">How are you travelling to Surat?</label>
+                    <select id="travelMode">
+                        <option value="Not Specified" id="trans-optDefault">Select Mode of Transport</option>
+                        <option value="Airways" id="trans-optAir">Airways ✈️</option>
+                        <option value="Railways" id="trans-optRail">Railways 🚂</option>
+                        <option value="Roadways" id="trans-optRoad">Roadways 🚗</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">Confirm Attendance</button>
+            </form>
+            <div class="footer-hashtag">#CharviSaidYash</div>
+        </section>
+    </main>
+
+    <script>
+        const translations = {
+            en: {
+                takeoffBanner: "Charvi taking off with Yash",
+                launchText: "Tap To Launch",
+                heroTitle: "Wedding of Charvi & Yash",
+                heroDetails1: "5 – 6 December 2026 • Surat, Gujarat, India",
+                heroDetails2: "5th: Haldi, Mehendi & Sangeet <br> 6th: Wedding",
+                btnConfirm: "Confirm Attendance",
+                rsvpMeta: "Wedding of Charvi & Yash",
+                rsvpDeadline: "RSVP BY 18 November 2026",
+                rsvpMainHeader: "Confirm Your Presence",
+                labelName: "Full Name",
+                placeholderName: "Your name",
+                labelPhone: "Mobile Number",
+                placeholderPhone: "10-digit mobile number",
+                labelAttending: "Will you be attending?",
+                radioYes: "Super Excited To Be There! 🎉",
+                radioNo: "Regretfully, I won't be able to join 😔",
+                labelTravel: "How are you travelling to Surat?",
+                optDefault: "Select Mode of Transport",
+                optAir: "Airways ✈️",
+                optRail: "Railways 🚂",
+                optRoad: "Roadways 🚗",
+                btnSubmit: "Confirm Attendance",
+                sending: "Sending...",
+                thankYou: "Thank You!",
+                alertMessage: "We are excited to welcome you! 🎉",
+                alertError: "Error submitting form. Please try again."
+            },
+            hi: {
+                takeoffBanner: "चार्वी चली यश के साथ उड़ान भरने",
+                launchText: "शुरू करने के लिए टैप करें",
+                heroTitle: "चार्वी और यश का विवाह",
+                heroDetails1: "5 – 6 दिसंबर 2026 • सूरत, गुजरात, भारत",
+                heroDetails2: "5 तारीख: हल्दी, मेहंदी और संगीत <br> 6 तारीख: शादी",
+                btnConfirm: "उपस्थिति की पुष्टि करें",
+                rsvpMeta: "चार्वी और यश का विवाह",
+                rsvpDeadline: "RSVP की अंतिम तिथि 18 नवंबर 2026",
+                rsvpMainHeader: "अपनी उपस्थिति दर्ज करें",
+                labelName: "पूरा नाम",
+                placeholderName: "आपका नाम",
+                labelPhone: "मोबाइल नंबर",
+                placeholderPhone: "10 अंकों का मोबाइल नंबर",
+                labelAttending: "क्या आप शादी में शामिल होंगे?",
+                radioYes: "आने के लिए बेहद उत्साहित हूँ! 🎉",
+                radioNo: "खेद है, मैं शामिल नहीं हो पाऊँगा/पाऊँगी 😔",
+                labelTravel: "आप सूरत कैसे आ रहे हैं?",
+                optDefault: "यात्रा का साधन चुनें",
+                optAir: "हवाई यात्रा ✈️",
+                optRail: "रेल यात्रा 🚂",
+                optRoad: "सड़क मार्ग 🚗",
+                btnSubmit: "उपस्थिति की पुष्टि करें",
+                sending: "भेजा जा रहा है...",
+                thankYou: "धन्यवाद!",
+                alertMessage: "हम आपका स्वागत करने के लिए उत्साहित हैं! 🎉",
+                alertError: "सबमिट करने में त्रुटि। कृपया पुनः प्रयास करें।"
+            },
+            gu: {
+                takeoffBanner: "ચાર્વી ચાલી યશ સાથે ઉડાન ભરવા",
+                launchText: "શરૂ કરવા માટે ટેપ કરો",
+                heroTitle: "ચાર્વી અને યશ ના લગ્ન",
+                heroDetails1: "5 – 6 ડિસેમ્બર 2026 • સુરત, ગુજરાત, ભારત",
+                heroDetails2: "5મી: હલ્દી, મહેંદી અને સંગીત <br> 6ઠ્ઠી: લગ્ન",
+                btnConfirm: "હાજરીની ખાતરી કરો",
+                rsvpMeta: "ચાર્વી અને યશ ના લગ્ન",
+                rsvpDeadline: "RSVP ની છેલ્લી તારીખ 18 નવેમ્બર 2026",
+                rsvpMainHeader: "તમારી હાજરી નોંધાવો",
+                labelName: "પૂરું નામ",
+                placeholderName: "તમારું નામ",
+                labelPhone: "મોબાઇલ નંબર",
+                placeholderPhone: "10 અંકનો મોબાઇલ નંબર",
+                labelAttending: "શું તમે લગ્નમાં હાજરી આપશો?",
+                radioYes: "આવવા માટે ખૂબ જ ઉદાસીન/ઉત્સાહિત છું! 🎉",
+                radioNo: "દિલગીરી સાથે, હું હાજર નહીં રહી શકું 😔",
+                labelTravel: "તમે સુરત કેવી રીતે આવી રહ્યા છો?",
+                optDefault: "મુસાફરીનું માધ્યમ પસંદ કરો",
+                optAir: "હવાઈ માર્ગ ✈️",
+                optRail
