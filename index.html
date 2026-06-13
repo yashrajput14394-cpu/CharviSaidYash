@@ -7,7 +7,7 @@
     
     <meta property="og:title" content=" Wedding of Charvi & Yash" />
     <meta property="og:description" content="We are taking off! Tap to watch our airplane takeoff and RSVP to confirm your presence. ✈️💍" />
-    <meta property="og:image" content="https://yashrajput14394-cpu.github.io/CharviSaidYash/wedding_bg.jpg" />
+    <meta property="og:image" content="https://yashrajput14394-cpu.github.io/CharviSaidYash/wedding_bg_mobile.jpg" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://yashrajput14394-cpu.github.io/CharviSaidYash/" />
 
@@ -66,11 +66,20 @@
 
         #main-content { background-color: var(--bg-cream); min-height: 100vh; opacity: 0; transition: opacity 1s ease; }
         
-        /* --- HERO SCREEN MATCHED TO JPG --- */
+        /* --- HERO SCREEN RESIZE (SMART SWITCH) --- */
         .hero {
             position: relative; height: 100vh; height: -webkit-fill-available;
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('wedding_bg.jpg') no-repeat center center/cover;
             display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; padding: 24px;
+            
+            /* 1. Default layout: Displays landscape image on Laptops and Tablets */
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('wedding_bg_desktop.jpg') no-repeat center center/cover;
+        }
+
+        /* 2. Responsive switch: Displays vertical image on Mobile Screens (768px wide or smaller) */
+        @media(max-width: 768px) {
+            .hero {
+                background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('wedding_bg_mobile.jpg') no-repeat center center/cover;
+            }
         }
 
         .hero-hashtag { font-family: 'Alex Brush', cursive; font-size: 3.5rem; margin-bottom: 10px; text-shadow: 0 2px 8px rgba(0,0,0,0.4); }
@@ -188,7 +197,6 @@
         const notAttendingRadio = document.getElementById('notAttendingRadio');
         const attendingRadio = document.getElementById('attendingRadio');
 
-        // Safety backup layout loader
         function displayMainApp() {
             introScreen.style.display = 'none';
             mainContent.style.opacity = '1';
@@ -208,7 +216,6 @@
 
         window.addEventListener('DOMContentLoaded', () => { 
             document.body.style.overflowY = 'hidden';
-            // Safety measure: if screen fails to handle animation configurations, auto-reveal content in 6 seconds
             setTimeout(() => { if(mainContent.style.opacity !== '1') { displayMainApp(); } }, 6000);
         });
 
@@ -218,7 +225,6 @@
         const form = document.getElementById('weddingForm');
         const submitBtn = document.getElementById('submitBtn');
         
-        // AUTHENTICATED TARGET EXCEL SHEET LINK 
         const scriptURL = 'https://script.google.com/macros/s/AKfycbxdqEZbF_nDhLb0JfKL4nVNuOxatWzQPqTSmXIqmRaWTWrTnbOWyAJk5C6CYAR3ZgpcaQ/exec';
 
         form.addEventListener('submit', e => {
