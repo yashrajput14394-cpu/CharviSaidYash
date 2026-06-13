@@ -27,22 +27,21 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background-color: var(--bg-sky); font-family: 'Montserrat', sans-serif; overflow-x: hidden; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 
-        /* --- FIXED LANGUAGE SWITCHER --- */
+        /* --- FIXED LANGUAGE SWITCHER (DESKTOP & MOBILE OPTIMIZED) --- */
         .lang-container {
-            position: fixed; top: 15px; right: 15px; z-index: 2000;
-            background: rgba(255, 255, 255, 0.85); padding: 5px 10px;
-            border-radius: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            display: flex; gap: 8px; font-size: 0.75rem; font-weight: 600;
-            backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
-            border: 1px solid rgba(90,24,39,0.1);
+            position: fixed; top: 20px; right: 20px; z-index: 9999;
+            background: #ffffff; padding: 8px 16px;
+            border-radius: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            display: flex; gap: 10px; font-size: 0.8rem; font-weight: 600;
+            border: 1px solid var(--accent-maroon); align-items: center;
         }
         .lang-btn {
-            color: #666; cursor: pointer; transition: color 0.3s;
+            color: #555555; cursor: pointer; transition: color 0.3s, transform 0.2s;
             background: none; border: none; font-family: inherit; font-size: inherit; outline: none;
-            -webkit-tap-highlight-color: transparent;
+            padding: 2px 4px; -webkit-tap-highlight-color: transparent;
         }
-        .lang-btn:hover, .lang-btn.active { color: var(--accent-maroon); }
-        .lang-divider { color: #ccc; }
+        .lang-btn:hover, .lang-btn.active { color: var(--accent-maroon); transform: scale(1.05); }
+        .lang-divider { color: #dddddd; font-weight: 300; }
 
         /* --- INTRO SCREEN MOBILIZED --- */
         #intro-screen {
@@ -83,22 +82,27 @@
 
         #main-content { background-color: var(--bg-cream); min-height: 100vh; opacity: 0; transition: opacity 1s ease; }
         
-        /* --- HERO SCREEN RESIZE (SMART SWITCH) --- */
+        /* --- HERO SCREEN MASTER RECONCILIATION --- */
         .hero {
-            position: relative; height: 100vh; height: -webkit-fill-available;
+            position: relative; height: 100vh;
             display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; padding: 24px;
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('wedding_bg_desktop.jpg') no-repeat center center/cover;
+            /* Default desktop frame configuration */
+            background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('wedding_bg_desktop.jpg') no-repeat center top/contain;
+            background-color: #333333;
+            max-width: 800px; margin: 0 auto; box-shadow: 0 0 30px rgba(0,0,0,0.1);
         }
 
+        /* Responsive scaling setup for pure mobile devices */
         @media(max-width: 768px) {
             .hero {
                 background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('wedding_bg_mobile.jpg') no-repeat center center/cover;
+                max-width: 100%; box-shadow: none;
             }
         }
 
-        .hero-hashtag { font-family: 'Alex Brush', cursive; font-size: 3.5rem; margin-bottom: 10px; text-shadow: 0 2px 8px rgba(0,0,0,0.4); }
-        .hero-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 3px; margin: 12px 0; font-weight: 400; text-shadow: 0 2px 8px rgba(0,0,0,0.4); }
-        .hero-details { font-size: 0.95rem; margin: 8px 0; font-weight: 300; letter-spacing: 1px; text-shadow: 0 1px 5px rgba(0,0,0,0.4); }
+        .hero-hashtag { font-family: 'Alex Brush', cursive; font-size: 3.5rem; margin-bottom: 10px; text-shadow: 0 2px 8px rgba(0,0,0,0.5); }
+        .hero-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 3px; margin: 12px 0; font-weight: 400; text-shadow: 0 2px 8px rgba(0,0,0,0.5); }
+        .hero-details { font-size: 0.95rem; margin: 8px 0; font-weight: 300; letter-spacing: 1px; text-shadow: 0 1px 5px rgba(0,0,0,0.5); }
 
         .btn-confirm { margin-top: 30px; background-color: transparent; color: white; border: 1px solid white; padding: 12px 30px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; text-decoration: none; transition: background 0.3s; -webkit-tap-highlight-color: transparent; }
         .btn-confirm:hover { background-color: white; color: var(--text-dark); }
@@ -136,18 +140,18 @@
             .rsvp-header-main { font-size: 1.6rem; }
             .airplane-svg { width: 150px; }
             .reveal-banner { font-size: 1.5rem; padding: 6px 18px; }
-            .lang-container { top: 10px; right: 10px; padding: 4px 8px; }
+            .lang-container { top: 12px; right: 12px; padding: 6px 12px; }
         }
     </style>
 </head>
 <body>
 
     <div class="lang-container">
-        <button class="lang-btn active" onclick="switchLanguage('en')">EN</button>
+        <button class="lang-btn active" onclick="switchLanguage('en', event)">English</button>
         <span class="lang-divider">|</span>
-        <button class="lang-btn" onclick="switchLanguage('hi')">हिन</button>
+        <button class="lang-btn" onclick="switchLanguage('hi', event)">हिन्दी</button>
         <span class="lang-divider">|</span>
-        <button class="lang-btn" onclick="switchLanguage('gu')">ગુજ</button>
+        <button class="lang-btn" onclick="switchLanguage('gu', event)">ગુજરાતી</button>
     </div>
 
     <div id="intro-screen">
@@ -212,7 +216,6 @@
     </main>
 
     <script>
-        // TRANSLATION DICTIONARY
         const translations = {
             en: {
                 takeoffBanner: "Charvi taking off with Yash",
@@ -302,14 +305,14 @@
 
         let currentLang = 'en';
 
-        function switchLanguage(lang) {
+        function switchLanguage(lang, event) {
             currentLang = lang;
             
-            // Update active state button visual styling
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            if(event && event.target) {
+                event.target.classList.add('active');
+            }
 
-            // Apply translations to layout
             document.getElementById('trans-takeoffBanner').innerText = translations[lang].takeoffBanner;
             document.getElementById('trans-launchText').innerText = translations[lang].launchText;
             document.getElementById('trans-heroTitle').innerText = translations[lang].heroTitle;
@@ -332,14 +335,12 @@
             document.getElementById('trans-optRail').innerText = translations[lang].optRail;
             document.getElementById('trans-optRoad').innerText = translations[lang].optRoad;
             
-            // Manage submit button translation safely depending on form state
             const submitBtn = document.getElementById('submitBtn');
             if (!submitBtn.disabled) {
                 submitBtn.innerText = translations[lang].btnSubmit;
             }
         }
 
-        // --- CORE FUNCTIONALITY ---
         const flightContainer = document.getElementById('flightContainer');
         const launchText = document.getElementById('launchText');
         const introScreen = document.getElementById('intro-screen');
