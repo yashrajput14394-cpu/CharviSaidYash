@@ -121,7 +121,8 @@
         
         .hero-hashtag { font-family: 'Alex Brush', cursive; font-size: 3.5rem; margin-bottom: 12px; color: var(--accent-maroon); }
         .hero-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 3px; margin: 15px 0; font-weight: 400; color: var(--text-dark); }
-        .hero-details { font-size: 1.1rem; font-weight: 600; letter-spacing: 1px; color: var(--accent-maroon); line-height: 1.6; margin: 20px 0 40px 0; }
+        .hero-details { font-size: 1.1rem; font-weight: 600; letter-spacing: 1px; color: var(--accent-maroon); line-height: 1.6; margin: 20px 0 20px 0; }
+        .hero-schedule-note { font-size: 0.9rem; line-height: 1.5; color: var(--text-dark); font-weight: 400; margin-bottom: 30px; padding: 0 10px; }
 
         .rsvp-deadline { color: var(--accent-maroon); font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.15rem; margin-top: 20px; margin-bottom: 35px; }
         .rsvp-header-main { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 400; margin-bottom: 35px; border-top: 1px dashed #dcd0d2; padding-top: 35px; color: var(--text-dark); }
@@ -193,6 +194,7 @@
             <div class="hero-hashtag">#CharviSaidYash</div>
             <h1 class="hero-title">Wedding of Charvi & Yash</h1>
             <p class="hero-details">5 – 6 December 2026 <br> Surat, Gujarat, India</p>
+            <p class="hero-schedule-note">The celebrations kick off on the morning of the 5th and continue through the afternoon of the 6th, concluding after the wedding rituals. We’d love for you to be a part of every moment, so please plan your travel accordingly.</p>
 
             <p class="rsvp-deadline">RSVP BY 30 August 2026</p>
             <h2 class="rsvp-header-main">Please join us in our best times.</h2>
@@ -252,6 +254,7 @@
             if (musicToggle) musicToggle.style.display = 'flex';
         }
 
+        // Custom Dynamic Validation Logic
         function adjustPhoneValidation() {
             var country = document.getElementById('guestCountry').value;
             var phoneInput = document.getElementById('guestPhone');
