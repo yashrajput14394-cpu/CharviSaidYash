@@ -58,7 +58,7 @@
             z-index: 1005; -webkit-tap-highlight-color: transparent; padding: 20px;
             width: 100%; max-width: 350px;
         }
-        .airplane-svg { width: 140px; height: auto; fill: var(--accent-maroon); filter: drop-shadow(0 10px 15px rgba(107,45,92,0.15)); margin-bottom: 25px; transition: transform 1.6s cubic-bezier(0.45, 0, 0.55, 1); }
+        .airplane-svg { width: 140px; height: auto; fill: var(--accent-maroon); filter: drop-shadow(0 10px 15px rgba(107,45,92,0.15)); margin-bottom: 25px; transition: transform 1.8s cubic-bezier(0.45, 0, 0.55, 1); }
         
         .takeoff-banner {
             background: white; padding: 12px 28px; border-radius: 50px;
@@ -82,8 +82,9 @@
 
         @keyframes delayedFlyAway { 
             0% { transform: translate(0, 0) rotate(0deg) scale(1); } 
-            25% { transform: translate(0, -5px) rotate(-2deg) scale(1); }
-            100% { transform: translate(100vw, -100vh) rotate(-18deg) scale(0.4); } 
+            15% { transform: translate(-2px, 5px) rotate(-3deg) scale(1); }
+            40% { transform: translate(20px, -40px) rotate(-12deg) scale(0.95); }
+            100% { transform: translate(120vw, -120vh) rotate(-22deg) scale(0.2); } 
         }
 
         #main-content { background-color: var(--bg-cream); min-height: 100vh; display: none; opacity: 0; transition: opacity 0.4s ease; }
