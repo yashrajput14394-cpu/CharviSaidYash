@@ -204,7 +204,15 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="guestPhone">Mobile Number</label>
+                    <label for="guestCountry">Country / देश</label>
+                    <select id="guestCountry" onchange="adjustPhoneValidation()">
+                        <option value="India">India (भारत)</option>
+                        <option value="Other">Outside India (अंतरराष्ट्रीय)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="guestPhone" id="phoneLabel">Mobile Number</label>
                     <input type="tel" id="guestPhone" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
                 </div>
 
@@ -237,12 +245,27 @@
         var bgMusic = document.getElementById('bgMusic');
         var musicToggle = document.getElementById('musicToggle');
 
-        // CACHE PROTECTION: Check if they already unlocked the site in this session
         if (sessionStorage.getItem('weddingUnlocked') === 'true') {
             var intro = document.getElementById('intro-screen');
             if (intro) intro.style.display = 'none';
             appLaunched = true;
             if (musicToggle) musicToggle.style.display = 'flex';
+        }
+
+        function adjustPhoneValidation() {
+            var country = document.getElementById('guestCountry').value;
+            var phoneInput = document.getElementById('guestPhone');
+            var phoneLabel = document.getElementById('phoneLabel');
+            
+            if (country === 'India') {
+                phoneInput.placeholder = "10-digit mobile number";
+                phoneInput.pattern = "[0-9]{10}";
+                phoneLabel.innerText = "Mobile Number";
+            } else {
+                phoneInput.placeholder = "International number (e.g. +1234567890)";
+                phoneInput.removeAttribute('pattern');
+                phoneLabel.innerText = "International Phone Number";
+            }
         }
 
         function launchWeddingWebsite() {
@@ -323,6 +346,7 @@
                         alert('We are excited to welcome you! 🎉');
                         form.reset();
                         document.getElementById('travelGroup').style.display = 'none';
+                        adjustPhoneValidation();
                         submitBtn.disabled = false;
                         submitBtn.innerText = 'Confirm Attendance';
                     })
