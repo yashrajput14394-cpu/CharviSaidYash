@@ -20,12 +20,13 @@
     
     <style>
         :root {
+            /* UNIFIED BACKGROUND COLOR TO PREVENT SHADE MISMATCH */
             --bg-sky: #fae0e4;
             --bg-cream: #fae0e4;
+            --pastel-pink-dark: #fae0e4;
             --text-dark: #2c2525;
             --accent-maroon: #6b2d5c;
             --gold-muted: #d4a373;
-            --pastel-pink-dark: #f7cad0;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -99,7 +100,7 @@
         .hero-second {
             position: relative; height: 100vh; width: 100%;
             background: url('second_bg_desktop.jpg') no-repeat center top/contain;
-            background-color: #f0b4bf;
+            background-color: var(--pastel-pink-dark);
             max-width: 800px; margin: 0 auto;
         }
 
