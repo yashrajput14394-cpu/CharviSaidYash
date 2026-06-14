@@ -395,8 +395,9 @@
                     return;
                 }
 
-                // Strict Mode of Travel Validation
-                if (document.getElementById('attendingRadio').checked) {
+                var isAttending = document.getElementById('attendingRadio').checked;
+
+                if (isAttending) {
                     var travelVal = document.getElementById('travelMode').value;
                     if (travelVal === "Not Specified") {
                         e.preventDefault();
@@ -425,11 +426,17 @@
                             if (musicToggle) musicToggle.innerHTML = '🔇';
                         }
                         
-                        triggerCrackerBurst();
+                        if (isAttending) {
+                            triggerCrackerBurst();
+                        }
                         submitBtn.innerText = 'Thank You!';
                         
                         setTimeout(function() {
-                            alert('We are excited to welcome you! 🎉');
+                            if (isAttending) {
+                                alert('We are excited to welcome you! 🎉');
+                            } else {
+                                alert('Aww, we hope you can still make it work - RSVP is editable if your plans change 😔');
+                            }
                             form.reset();
                             document.getElementById('travelGroup').style.display = 'none';
                             adjustPhoneValidation();
