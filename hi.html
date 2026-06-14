@@ -257,13 +257,18 @@
             if (appLaunched) return;
             appLaunched = true;
             
-            document.getElementById('flightContainer').classList.add('takeoff');
+            var container = document.getElementById('flightContainer');
+            if (container) {
+                container.classList.add('takeoff');
+            }
             
             if (bgMusic) {
                 bgMusic.play().then(function() {
-                    musicToggle.style.display = 'flex';
-                    musicToggle.innerHTML = '🎵';
-                }).catch(function(err) { console.log("Audio block managed:", err); });
+                    if (musicToggle) {
+                        musicToggle.style.display = 'flex';
+                        musicToggle.innerHTML = '🎵';
+                    }
+                }).catch(function(err) { console.log("Audio trigger processed:", err); });
             }
             
             setTimeout(function() {
@@ -281,7 +286,7 @@
         }
 
         function toggleMusicEngine() {
-            if (!bgMusic) return;
+            if (!bgMusic || !musicToggle) return;
             if (bgMusic.paused) {
                 bgMusic.play();
                 musicToggle.innerHTML = '🎵';
