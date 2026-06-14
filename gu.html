@@ -237,9 +237,19 @@
         var bgMusic = document.getElementById('bgMusic');
         var musicToggle = document.getElementById('musicToggle');
 
+        // CACHE PROTECTION: Check if they already unlocked the site in this session
+        if (sessionStorage.getItem('weddingUnlocked') === 'true') {
+            var intro = document.getElementById('intro-screen');
+            if (intro) intro.style.display = 'none';
+            appLaunched = true;
+            if (musicToggle) musicToggle.style.display = 'flex';
+        }
+
         function launchWeddingWebsite() {
             if (appLaunched) return;
             appLaunched = true;
+            
+            sessionStorage.setItem('weddingUnlocked', 'true');
             
             var container = document.getElementById('flightContainer');
             if (container) {
