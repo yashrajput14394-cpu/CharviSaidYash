@@ -120,7 +120,8 @@
         .rsvp-container { padding: 80px 20px 60px 20px; max-width: 480px; margin: 0 auto; text-align: center; color: var(--text-dark); background-color: var(--bg-cream); }
         
         .hero-hashtag { font-family: 'Great Vibes', cursive; font-size: 4rem; margin-bottom: 12px; color: var(--accent-maroon); }
-        .hero-title { font-family: 'Cinzel', serif; font-size: 1.7rem; text-transform: uppercase; letter-spacing: 3px; margin: 15px 0; font-weight: 700; color: var(--text-dark); }
+        .hero-title { font-family: 'Cinzel', serif; font-size: 1.7rem; text-transform: uppercase; letter-spacing: 3px; margin: 15px 0 5px 0; font-weight: 700; color: var(--text-dark); }
+        .hero-subtitle { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; text-transform: lowercase; font-style: italic; letter-spacing: 2px; margin-bottom: 20px; color: #554446; font-weight: 400; }
         .hero-details { font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 700; letter-spacing: 1.5px; color: var(--accent-maroon); line-height: 1.6; margin: 20px 0 20px 0; }
         .hero-schedule-note { font-size: 0.9rem; line-height: 1.6; color: var(--text-dark); font-weight: 400; margin-bottom: 35px; padding: 0 10px; }
 
@@ -151,10 +152,10 @@
             pointer-events: none; z-index: 99999; display: none;
         }
 
-        /* Mobile Viewport Sizing Logic System Fix */
         @media(max-width: 480px) {
-            .hero-hashtag { font-size: 11vw; } /* Uses fluid sizing to prevent tracking layout overflow errors */
-            .hero-title { font-size: 1.35rem; letter-spacing: 1.5px; }
+            .hero-hashtag { font-size: 11vw; }
+            .hero-title { font-size: 1.5rem; letter-spacing: 1.5px; margin: 12px 0 3px 0; }
+            .hero-subtitle { font-size: 0.95rem; letter-spacing: 1px; margin-bottom: 15px; }
             .hero-details { font-size: 1rem; }
             .rsvp-header-main { font-size: 1.2rem; }
             .airplane-svg { width: 120px; }
@@ -200,7 +201,8 @@
 
         <section class="rsvp-container">
             <div class="hero-hashtag">#CharviSaidYash</div>
-            <h1 class="hero-title">Wedding of Charvi & Yash</h1>
+            <h1 class="hero-title">Charvi & Yash</h1>
+            <div class="hero-subtitle">are tying the knot</div>
             <p class="hero-details">5 – 6 December 2026 <br> Surat, Gujarat, India</p>
             <p class="hero-schedule-note">The celebrations kick off on the morning of the 5th and continue through the afternoon of the 6th, concluding after the wedding rituals. We’d love for you to be a part of every moment, so please plan your travel accordingly.</p>
 
@@ -391,6 +393,16 @@
                     e.preventDefault();
                     alert('Please select whether you will be attending.');
                     return;
+                }
+
+                // Strict Mode of Travel Validation
+                if (document.getElementById('attendingRadio').checked) {
+                    var travelVal = document.getElementById('travelMode').value;
+                    if (travelVal === "Not Specified") {
+                        e.preventDefault();
+                        alert('Please select your mode of travel to Surat.');
+                        return;
+                    }
                 }
 
                 e.preventDefault();
