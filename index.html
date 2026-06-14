@@ -49,28 +49,29 @@
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background-color: var(--bg-sky); display: flex; flex-direction: column;
             justify-content: center; align-items: center; z-index: 1000;
-            transition: transform 0.5s ease-out, opacity 0.4s ease-out; overflow: hidden;
+            overflow: hidden; visibility: visible; opacity: 1;
+            transition: transform 0.4s ease-out, opacity 0.4s ease-out;
         }
 
         .flight-container { 
             position: relative; display: flex; flex-direction: column; 
             align-items: center; justify-content: center; cursor: pointer; 
-            z-index: 5; -webkit-tap-highlight-color: transparent; padding: 20px;
+            z-index: 1005; -webkit-tap-highlight-color: transparent; padding: 20px;
+            width: 100%; max-width: 320px;
         }
-        .airplane-svg { width: 150px; height: auto; fill: var(--accent-maroon); filter: drop-shadow(0 10px 15px rgba(107,45,92,0.15)); margin-bottom: 25px; }
+        .airplane-svg { width: 140px; height: auto; fill: var(--accent-maroon); filter: drop-shadow(0 10px 15px rgba(107,45,92,0.15)); margin-bottom: 25px; }
         
         .takeoff-banner {
             background: white; padding: 12px 28px; border-radius: 50px;
             font-family: 'Playfair Display', serif; font-style: italic; font-size: 1rem; color: var(--accent-maroon);
             box-shadow: 0 5px 15px rgba(0,0,0,0.05); white-space: nowrap; border: 1px solid rgba(107,45,92,0.1);
-            text-align: center;
+            text-align: center; width: 100%;
         }
 
-        .launch-text { color: #8a7578; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; margin-top: 25px; animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+        .launch-text { color: #8a7578; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; margin-top: 25px; text-align: center; }
 
         /* --- MAIN APP SECTION --- */
-        #main-content { background-color: var(--bg-cream); min-height: 100vh; display: none; opacity: 0; transition: opacity 0.5s ease; }
+        #main-content { background-color: var(--bg-cream); min-height: 100vh; display: none; opacity: 0; transition: opacity 0.4s ease; }
         
         /* --- HERO SECTION --- */
         .hero {
@@ -134,7 +135,7 @@
             .hero-title { font-size: 1.4rem; letter-spacing: 2px; }
             .hero-details { font-size: 0.85rem; }
             .rsvp-header-main { font-size: 1.6rem; }
-            .airplane-svg { width: 130px; }
+            .airplane-svg { width: 120px; }
             .lang-container { top: 12px; right: 12px; padding: 6px 12px; }
         }
     </style>
@@ -149,13 +150,13 @@
         <button class="lang-btn" onclick="switchLanguage('gu', event)">ગુજરાતી</button>
     </div>
 
-    <div id="intro-screen">
-        <div class="flight-container" id="flightContainer">
+    <div id="intro-screen" onclick="displayMainApp()">
+        <div class="flight-container">
             <svg class="airplane-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
             </svg>
             <div class="takeoff-banner" id="trans-takeoffBanner">Charvi taking off with Yash</div>
-            <div class="launch-text" id="trans-launchText">Tap To Launch</div>
+            <div class="launch-text" id="trans-launchText">Tap Anywhere To Open</div>
         </div>
     </div>
 
@@ -212,7 +213,7 @@
         const translations = {
             en: {
                 takeoffBanner: "Charvi taking off with Yash",
-                launchText: "Tap To Launch",
+                launchText: "Tap Anywhere To Open",
                 heroTitle: "Wedding of Charvi & Yash",
                 heroDetails1: "5 – 6 December 2026 • Surat, Gujarat, India",
                 heroDetails2: "5th: Haldi, Mehendi & Sangeet <br> 6th: Wedding",
@@ -240,7 +241,7 @@
             },
             hi: {
                 takeoffBanner: "चार्वी चली यश के साथ उड़ान भरने",
-                launchText: "शुरू करने के लिए टैप करें",
+                launchText: "खोलने के लिए कहीं भी टैप करें",
                 heroTitle: "चार्वी और यश का विवाह",
                 heroDetails1: "5 – 6 दिसंबर 2026 • सूरत, गुजरात, भारत",
                 heroDetails2: "5 तारीख: हल्दी, मेहंदी और संगीत <br> 6 तारीख: शादी",
@@ -268,7 +269,7 @@
             },
             gu: {
                 takeoffBanner: "ચાર્વી ચાલી યશ સાથે ઉડાન ભરવા",
-                launchText: "શરૂ કરવા માટે ટેપ કરો",
+                launchText: "ખોલવા માટે ગમે ત્યાં ટેપ કરો",
                 heroTitle: "ચાર્વી અને યશ ના લગ્ન",
                 heroDetails1: "5 – 6 ડિસેમ્બર 2026 • સુરત, ગુજરાત, ભારત",
                 heroDetails2: "5મી: હલ્દી, મહેંદી અને સંગીત <br> 6ઠ્ઠી: લગ્ન",
@@ -286,4 +287,112 @@
                 labelTravel: "તમે સુરત કેવી રીતે આવી રહ્યા છો?",
                 optDefault: "મુસાફરીનું માધ્યમ પસંદ કરો",
                 optAir: "હવાઈ માર્ગ ✈️",
-                optRail
+                optRail: "રેલવે માર્ગ 🚂",
+                optRoad: "રોડ માર્ગ 🚗",
+                btnSubmit: "હાજરીની ખાતરી કરો",
+                sending: "મોકલી રહ્યું છે...",
+                thankYou: "ધન્યવાદ!",
+                alertMessage: "અમે તમારું સ્વાગત કરવા માટે ઉત્સાહિત છીએ! 🎉",
+                alertError: "સબમિટ કરવામાં ભૂલ આવી. કૃપા કરીને ફરી પ્રયાસ કરો."
+            }
+        };
+
+        let currentLang = 'en';
+
+        function switchLanguage(lang, event) {
+            currentLang = lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            if(event && event.target) event.target.classList.add('active');
+
+            document.getElementById('trans-takeoffBanner').innerText = translations[lang].takeoffBanner;
+            document.getElementById('trans-launchText').innerText = translations[lang].launchText;
+            document.getElementById('trans-heroTitle').innerText = translations[lang].heroTitle;
+            document.getElementById('trans-heroDetails1').innerHTML = translations[lang].heroDetails1;
+            document.getElementById('trans-heroDetails2').innerHTML = translations[lang].heroDetails2;
+            document.getElementById('trans-btnConfirm').innerText = translations[lang].btnConfirm;
+            document.getElementById('trans-rsvpMeta').innerText = translations[lang].rsvpMeta;
+            document.getElementById('trans-rsvpDeadline').innerText = translations[lang].rsvpDeadline;
+            document.getElementById('trans-rsvpMainHeader').innerText = translations[lang].rsvpMainHeader;
+            document.getElementById('trans-labelName').innerText = translations[lang].labelName;
+            document.getElementById('guestName').placeholder = translations[lang].placeholderName;
+            document.getElementById('trans-labelPhone').innerText = translations[lang].labelPhone;
+            document.getElementById('guestPhone').placeholder = translations[lang].placeholderPhone;
+            document.getElementById('trans-labelAttending').innerText = translations[lang].labelAttending;
+            document.getElementById('trans-radioYes').innerText = translations[lang].radioYes;
+            document.getElementById('trans-radioNo').innerText = translations[lang].radioNo;
+            document.getElementById('trans-labelTravel').innerText = translations[lang].labelTravel;
+            document.getElementById('trans-optDefault').innerText = translations[lang].optDefault;
+            document.getElementById('trans-optAir').innerText = translations[lang].optAir;
+            document.getElementById('trans-optRail').innerText = translations[lang].optRail;
+            document.getElementById('trans-optRoad').innerText = translations[lang].optRoad;
+            
+            const submitBtn = document.getElementById('submitBtn');
+            if (!submitBtn.disabled) submitBtn.innerText = translations[lang].btnSubmit;
+        }
+
+        const introScreen = document.getElementById('intro-screen');
+        const mainContent = document.getElementById('main-content');
+        const travelGroup = document.getElementById('travelGroup');
+        const notAttendingRadio = document.getElementById('notAttendingRadio');
+        const attendingRadio = document.getElementById('attendingRadio');
+        let appLaunched = false;
+
+        function displayMainApp() {
+            if (appLaunched) return;
+            appLaunched = true;
+            
+            // Hard hide layout shifts instantly
+            introScreen.style.transform = 'translateY(-100vh)';
+            introScreen.style.opacity = '0';
+            mainContent.style.display = 'block';
+            document.body.style.overflowY = 'auto';
+            
+            setTimeout(() => {
+                mainContent.style.opacity = '1';
+                introScreen.style.display = 'none';
+            }, 300);
+        }
+
+        // Global recovery timer: If anything blocks structural setup, force auto-reveal in 2 seconds
+        setTimeout(() => {
+            if(!appLaunched) displayMainApp();
+        }, 2000);
+
+        notAttendingRadio.addEventListener('change', () => { if(notAttendingRadio.checked) travelGroup.style.display = 'none'; });
+        attendingRadio.addEventListener('change', () => { if(attendingRadio.checked) travelGroup.style.display = 'block'; });
+
+        const form = document.getElementById('weddingForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxdqEZbF_nDhLb0JfKL4nVNuOxatWzQPqTSmXIqmRaWTWrTnbOWyAJk5C6CYAR3ZgpcaQ/exec';
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            submitBtn.disabled = true;
+            submitBtn.innerText = translations[currentLang].sending;
+
+            const formData = new FormData();
+            formData.append('guestName', document.getElementById('guestName').value);
+            formData.append('guestPhone', document.getElementById('guestPhone').value);
+            formData.append('attendance', document.querySelector('input[name="attendance"]:checked').value);
+            
+            const travelSelection = notAttendingRadio.checked ? "N/A" : document.getElementById('travelMode').value;
+            formData.append('travelMode', travelSelection);
+
+            fetch(scriptURL, { method: 'POST', body: formData})
+                .then(response => {
+                    submitBtn.innerText = translations[currentLang].thankYou;
+                    alert(translations[currentLang].alertMessage);
+                    form.reset();
+                    travelGroup.style.display = 'block';
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = translations[currentLang].btnSubmit;
+                })
+                .catch(error => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = translations[currentLang].btnSubmit;
+                    alert(translations[currentLang].alertError);
+                });
+        });
+    </script>
+</body>
+</html>
