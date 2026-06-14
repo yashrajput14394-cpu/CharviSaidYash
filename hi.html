@@ -6,13 +6,13 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>Charvi & Yash Wedding 🎉</title>
+    <title>चार्वी और यश की शादी 🎉</title>
     
-    <meta property="og:title" content="Wedding of Charvi & Yash" />
-    <meta property="og:description" content="We are taking off! Tap to watch our airplane takeoff and RSVP to confirm your presence. ✈️💍" />
+    <meta property="og:title" content="चार्वी और यश की शादी" />
+    <meta property="og:description" content="हम उड़ान भर रहे हैं! हमारा विमान टेकऑफ़ देखने के लिए टैप करें और अपनी उपस्थिति की पुष्टि के लिए RSVP करें। ✈️💍" />
     <meta property="og:image" content="https://yashrajput14394-cpu.github.io/CharviSaidYash/wedding_bg_mobile.jpg" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://yashrajput14394-cpu.github.io/CharviSaidYash/" />
+    <meta property="og:url" content="https://yashrajput14394-cpu.github.io/CharviSaidYash/hi.html" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -72,7 +72,7 @@
         .takeoff-banner {
             background: white; padding: 12px 28px; border-radius: 50px;
             font-family: 'Cinzel', serif; font-weight: 600; font-size: 0.9rem; letter-spacing: 1.5px; color: var(--accent-maroon);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.055); white-space: nowrap; border: 1px solid rgba(107,45,92,0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); white-space: nowrap; border: 1px solid rgba(107,45,92,0.1);
             text-align: center; width: 100%; transition: opacity 0.3s ease;
         }
 
@@ -90,7 +90,7 @@
         .flight-container.takeoff .airplane-svg { animation: delayedFlyAway 1.8s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards; }
 
         @keyframes delayedFlyAway { 
-            0% { transform: translate(0, 0) rotate(0deg) scale(1); } 
+            0% { transform: translate(0, 0) rotate(0deg) scale(1); }
             15% { transform: translate(-2px, 5px) rotate(-3deg) scale(1); }
             40% { transform: translate(20px, -40px) rotate(-12deg) scale(0.95); }
             100% { transform: translate(120vw, -120vh) rotate(-22deg) scale(0.2); } 
@@ -122,7 +122,7 @@
         .hero-hashtag { font-family: 'Great Vibes', cursive; font-size: 4rem; margin-bottom: 12px; color: var(--accent-maroon); }
         .hero-title { font-family: 'Cinzel', serif; font-size: 1.7rem; text-transform: uppercase; letter-spacing: 3px; margin: 15px 0; font-weight: 700; color: var(--text-dark); }
         .hero-details { font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 700; letter-spacing: 1.5px; color: var(--accent-maroon); line-height: 1.6; margin: 20px 0 20px 0; }
-        .hero-schedule-note { font-size: 0.9rem; line-height: 1.6; color: var(--text-dark); font-weight: 400; margin-bottom: 35px; padding: 0 10px; text-align: center; }
+        .hero-schedule-note { font-size: 0.9rem; line-height: 1.6; color: var(--text-dark); font-weight: 400; margin-bottom: 35px; padding: 0 10px; }
 
         .rsvp-deadline { color: var(--accent-maroon); font-family: 'Cinzel', serif; font-weight: 600; letter-spacing: 2px; font-size: 1.1rem; margin-top: 20px; margin-bottom: 35px; }
         .rsvp-header-main { font-family: 'Cinzel', serif; font-size: 1.4rem; font-weight: 600; letter-spacing: 1px; margin-bottom: 35px; border-top: 1px dashed #dcd0d2; padding-top: 35px; color: var(--text-dark); }
@@ -146,19 +146,19 @@
         .submit-btn:hover { background-color: #542248; }
         .footer-hashtag { margin-top: 60px; font-family: 'Great Vibes', cursive; font-size: 3rem; color: var(--gold-muted); }
 
-        /* Canvas for Cracker Burst Elements */
         #celebrationCanvas {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none; z-index: 99999; display: none;
         }
 
+        /* Mobile Viewport Sizing Logic System Fix */
         @media(max-width: 480px) {
-            .hero-hashtag { font-size: 3.3rem; }
+            .hero-hashtag { font-size: 11vw; } /* Uses fluid sizing to prevent tracking layout overflow errors */
             .hero-title { font-size: 1.35rem; letter-spacing: 1.5px; }
             .hero-details { font-size: 1rem; }
             .rsvp-header-main { font-size: 1.2rem; }
             .airplane-svg { width: 120px; }
-            .reveal-banner { font-size: 2.3rem; top: -15px; padding: 8px 25px; }
+            .reveal-banner { font-size: 8vw; top: -15px; padding: 8px 15px; white-space: normal; width: 90%; text-align: center; }
             .lang-container { top: 12px; right: 12px; padding: 6px 12px; }
             .audio-toggle-btn { bottom: 15px; right: 15px; width: 40px; height: 40px; font-size: 1.1rem; }
         }
@@ -188,7 +188,7 @@
             <svg class="airplane-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
             </svg>
-            <div class="takeoff-banner">चार्वी चली यश के साथ उड़ान भरने</div>
+            <div class="takeoff-banner">चार्वी यश के साथ उड़ान भर रही हैं</div>
             <div class="launch-text">खोलने के लिए कहीं भी टैप करें</div>
         </div>
     </div>
@@ -200,12 +200,12 @@
 
         <section class="rsvp-container">
             <div class="hero-hashtag">#CharviSaidYash</div>
-            <h1 class="hero-title">चार्वी और यश का विवाह</h1>
+            <h1 class="hero-title">चार्वी और यश की शादी</h1>
             <p class="hero-details">5 – 6 दिसंबर 2026 <br> सूरत, गुजरात, भारत</p>
-            <p class="hero-schedule-note">The celebrations kick off on the morning of the 5th and continue through the afternoon of the 6th, concluding after the wedding rituals. We’d love for you to be a part of every moment, so please plan your travel accordingly.</p>
+            <p class="hero-schedule-note">उत्सव 5 तारीख की सुबह से शुरू होकर 6 तारीख की दोपहर तक विवाह की रस्मों के बाद तक जारी रहेंगे। हम चाहेंगे कि आप हर पल का हिस्सा बनें, इसलिए कृपया उसी के अनुसार अपनी यात्रा की योजना बनाएं।</p>
 
             <p class="rsvp-deadline">RSVP की अंतिम तिथि 30 अगस्त 2026</p>
-            <h2 class="rsvp-header-main">हमारे सबसे अच्छे समय में हमारे साथ शामिल हों।</h2>
+            <h2 class="rsvp-header-main">कृपया हमारे सबसे खूबसूरत पलों में हमारे साथ शामिल हों।</h2>
 
             <form id="weddingForm">
                 <div class="form-group">
@@ -214,33 +214,33 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="guestCountry">देश (Country)</label>
+                    <label for="guestCountry">देश</label>
                     <select id="guestCountry" onchange="adjustPhoneValidation()">
                         <option value="India">भारत (India)</option>
-                        <option value="Other">भारत के बाहर (Outside India)</option>
+                        <option value="International">अंतर्राष्ट्रीय (International)</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="guestPhone" id="phoneLabel">मोबाइल नंबर</label>
-                    <input type="tel" id="guestPhone" placeholder="10 अंकों का मोबाइल नंबर" pattern="[0-9]{10}" required>
+                    <input type="tel" id="guestPhone" placeholder="10-अंकों का मोबाइल नंबर" pattern="[0-9]{10}" required>
                 </div>
 
                 <div class="form-group">
-                    <label>क्या आप शादी में शामिल होंगे?</label>
+                    <label>क्या आप समारोह में शामिल होंगे?</label>
                     <div class="radio-container">
-                        <label class="radio-label"><input type="radio" name="attendance" value="Attending" id="attendingRadio" onclick="document.getElementById('travelGroup').style.display='block'"> <span>आने के लिए बेहद उत्साहित हूँ! 🎉</span></label>
-                        <label class="radio-label"><input type="radio" name="attendance" value="Not Attending" id="notAttendingRadio" onclick="document.getElementById('travelGroup').style.display='none'"> <span>माफ़ करें, मैं शामिल नहीं हो पाऊँगा/पाऊँगी 😔</span></label>
+                        <label class="radio-label"><input type="radio" name="attendance" value="Attending" id="attendingRadio" onclick="document.getElementById('travelGroup').style.display='block'"> <span>वहाँ होने के लिए बेहद उत्साहित हूँ! 🎉</span></label>
+                        <label class="radio-label"><input type="radio" name="attendance" value="Not Attending" id="notAttendingRadio" onclick="document.getElementById('travelGroup').style.display='none'"> <span>क्षमा करें, मैं शामिल नहीं हो पाऊँगा/पाऊँगी 😔</span></label>
                     </div>
                 </div>
 
                 <div class="form-group" id="travelGroup" style="display: none;">
-                    <label for="travelMode">आप सूरत कैसे आ रहे हैं?</label>
+                    <label for="travelMode">आप सूरत की यात्रा कैसे कर रहे हैं?</label>
                     <select id="travelMode">
-                        <option value="Not Specified">यात्रा का साधन चुनें (Mode of Travel)</option>
-                        <option value="Flight">Flight ✈️</option>
-                        <option value="Train">Train 🚂</option>
-                        <option value="Road">Road 🚗</option>
+                        <option value="Not Specified">यात्रा का साधन चुनें</option>
+                        <option value="Flight">फ्लाइट ✈️</option>
+                        <option value="Train">ट्रेन 🚂</option>
+                        <option value="Road">सड़क मार्ग 🚗</option>
                     </select>
                 </div>
 
@@ -261,17 +261,59 @@
             var phoneLabel = document.getElementById('phoneLabel');
             
             if (country === 'India') {
-                phoneInput.placeholder = "10 अंकों का मोबाइल नंबर";
+                phoneInput.placeholder = "10-अंकों का मोबाइल नंबर";
                 phoneInput.pattern = "[0-9]{10}";
                 phoneLabel.innerText = "मोबाइल नंबर";
             } else {
-                phoneInput.placeholder = "अंतरराष्ट्रीय नंबर (जैसे: +1234567890)";
+                phoneInput.placeholder = "अंतर्राष्ट्रीय नंबर (जैसे +1234567890)";
                 phoneInput.removeAttribute('pattern');
-                phoneLabel.innerText = "अंतरराष्ट्रीय मोबाइल नंबर";
+                phoneLabel.innerText = "अंतर्राष्ट्रीय फ़ोन नंबर";
             }
         }
 
-        /* Crackers Animation Core System */
+        function launchWeddingWebsite() {
+            if (appLaunched) return;
+            appLaunched = true;
+            
+            var container = document.getElementById('flightContainer');
+            if (container) {
+                container.classList.add('takeoff');
+            }
+            
+            if (bgMusic) {
+                bgMusic.play().then(function() {
+                    if (musicToggle) {
+                        musicToggle.style.display = 'flex';
+                        musicToggle.innerHTML = '🎵';
+                    }
+                }).catch(function(err) { console.log("Audio trigger processed:", err); });
+            }
+            
+            setTimeout(function() {
+                var intro = document.getElementById('intro-screen');
+                if (intro) {
+                    intro.style.transform = 'translateY(-100vh)';
+                    intro.style.opacity = '0';
+                }
+            }, 800);
+            
+            setTimeout(function() {
+                var intro = document.getElementById('intro-screen');
+                if (intro) intro.style.display = 'none';
+            }, 1200);
+        }
+
+        function toggleMusicEngine() {
+            if (!bgMusic || !musicToggle) return;
+            if (bgMusic.paused) {
+                bgMusic.play();
+                musicToggle.innerHTML = '🎵';
+            } else {
+                bgMusic.pause();
+                musicToggle.innerHTML = '🔇';
+            }
+        }
+
         function triggerCrackerBurst() {
             var canvas = document.getElementById('celebrationCanvas');
             var ctx = canvas.getContext('2d');
@@ -347,14 +389,14 @@
                 var attendanceRadio = document.querySelector('input[name="attendance"]:checked');
                 if(!attendanceRadio) {
                     e.preventDefault();
-                    alert('कृपया चुनें कि क्या आप शामिल होंगे या नहीं।');
+                    alert('कृपया चुनें कि क्या आप शामिल हो रहे हैं।');
                     return;
                 }
 
                 e.preventDefault();
                 var submitBtn = document.getElementById('submitBtn');
                 submitBtn.disabled = true;
-                submitBtn.innerText = 'भेजा जा रहा है...';
+                submitBtn.innerText = 'भेज रहा है...';
 
                 var formData = new FormData();
                 formData.append('guestName', document.getElementById('guestName').value);
@@ -386,52 +428,9 @@
                     .catch(function(err) {
                         submitBtn.disabled = false;
                         submitBtn.innerText = 'उपस्थिति की पुष्टि करें';
-                        alert('सबमिट करने में त्रुटि। कृपया पुनः प्रयास करें।');
+                        alert('प्रपत्र सबमिट करने में त्रुटि। कृपया पुनः प्रयास करें।');
                     });
             });
-        }
-
-        function launchWeddingWebsite() {
-            if (appLaunched) return;
-            appLaunched = true;
-            
-            var container = document.getElementById('flightContainer');
-            if (container) {
-                container.classList.add('takeoff');
-            }
-            
-            if (bgMusic) {
-                bgMusic.play().then(function() {
-                    if (musicToggle) {
-                        musicToggle.style.display = 'flex';
-                        musicToggle.innerHTML = '🎵';
-                    }
-                }).catch(function(err) { console.log("Audio trigger processed:", err); });
-            }
-            
-            setTimeout(function() {
-                var intro = document.getElementById('intro-screen');
-                if (intro) {
-                    intro.style.transform = 'translateY(-100vh)';
-                    intro.style.opacity = '0';
-                }
-            }, 800);
-            
-            setTimeout(function() {
-                var intro = document.getElementById('intro-screen');
-                if (intro) intro.style.display = 'none';
-            }, 1200);
-        }
-
-        function toggleMusicEngine() {
-            if (!bgMusic || !musicToggle) return;
-            if (bgMusic.paused) {
-                bgMusic.play();
-                musicToggle.innerHTML = '🎵';
-            } else {
-                bgMusic.pause();
-                musicToggle.innerHTML = '🔇';
-            }
         }
     </script>
 </body>
