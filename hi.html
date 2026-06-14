@@ -20,7 +20,6 @@
     
     <style>
         :root {
-            /* UNIFIED BACKGROUND COLOR TO PREVENT SHADE MISMATCH */
             --bg-sky: #fae0e4;
             --bg-cream: #fae0e4;
             --pastel-pink-dark: #fae0e4;
@@ -174,15 +173,24 @@
                 
                 flightContainer.classList.add('takeoff');
                 
-                setTimeout(() => {
-                    introScreen.style.transform = 'translateY(-100vh)';
-                    introScreen.style.opacity = '0';
+                if (mainContent) {
                     mainContent.style.display = 'block';
+                }
+                
+                setTimeout(() => {
+                    if (introScreen) {
+                        introScreen.style.transform = 'translateY(-100vh)';
+                        introScreen.style.opacity = '0';
+                    }
                 }, 800);
                 
                 setTimeout(() => {
-                    mainContent.style.opacity = '1';
-                    introScreen.style.none;
+                    if (mainContent) {
+                        mainContent.style.opacity = '1';
+                    }
+                    if (introScreen) {
+                        introScreen.style.display = 'none';
+                    }
                 }, 1200);
             }
 
@@ -204,7 +212,11 @@
                 form.addEventListener('submit', e => {
                     e.preventDefault();
                     submitBtn.disabled = true;
-                    submitBtn.innerText = 'भेजा जा रहा है...';
+                    
+                    const currentLang = document.documentElement.lang;
+                    if(currentLang === 'hi') submitBtn.innerText = 'भेजा जा रहा है...';
+                    else if(currentLang === 'gu') submitBtn.innerText = 'મોકલી રહ્યું છે...';
+                    else submitBtn.innerText = 'Sending...';
 
                     const formData = new FormData();
                     formData.append('guestName', document.getElementById('guestName').value);
@@ -216,17 +228,35 @@
 
                     fetch(scriptURL, { method: 'POST', body: formData})
                         .then(response => {
-                            submitBtn.innerText = 'धन्यवाद!';
-                            alert('हम आपका स्वागत करने के लिए उत्साहित हैं! 🎉');
+                            if(currentLang === 'hi') {
+                                submitBtn.innerText = 'धन्यवाद!';
+                                alert('हम आपका स्वागत करने के लिए उत्साहित हैं! 🎉');
+                                submitBtn.innerText = 'उपस्थिति की पुष्टि करें';
+                            } else if(currentLang === 'gu') {
+                                submitBtn.innerText = 'ધન્યવાદ!';
+                                alert('અમે તમારું સ્વાગત કરવા માટે ઉત્સાહિત છીએ! 🎉');
+                                submitBtn.innerText = 'હાજરીની ખાતરી કરો';
+                            } else {
+                                submitBtn.innerText = 'Thank You!';
+                                alert('We are excited to welcome you! 🎉');
+                                submitBtn.innerText = 'Confirm Attendance';
+                            }
                             form.reset();
                             travelGroup.style.display = 'block';
                             submitBtn.disabled = false;
-                            submitBtn.innerText = 'उपस्थिति की पुष्टि करें';
                         })
                         .catch(error => {
                             submitBtn.disabled = false;
-                            submitBtn.innerText = 'उपस्थिति की पुष्टि करें';
-                            alert('सबमिट करने में त्रुटि। कृपया पुनः प्रयास करें।');
+                            if(currentLang === 'hi') {
+                                submitBtn.innerText = 'उपस्थिति की पुष्टि करें';
+                                alert('सबमिट करने में त्रुटि। कृपया पुनः प्रयास करें।');
+                            } else if(currentLang === 'gu') {
+                                submitBtn.innerText = 'હાજરીની ખાતરી કરો';
+                                alert('સબમિટ કરવામાં ભૂલ આવી. કૃપા કરીને ફરી તપાસ કરો.');
+                            } else {
+                                submitBtn.innerText = 'Confirm Attendance';
+                                alert('Error submitting form. Please try again.');
+                            }
                         });
                 });
             }
