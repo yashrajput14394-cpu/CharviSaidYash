@@ -16,7 +16,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -71,14 +71,14 @@
         
         .takeoff-banner {
             background: white; padding: 12px 28px; border-radius: 50px;
-            font-family: 'Playfair Display', serif; font-style: italic; font-size: 1rem; color: var(--accent-maroon);
+            font-family: 'Cinzel', serif; font-weight: 600; font-size: 0.9rem; letter-spacing: 1.5px; color: var(--accent-maroon);
             box-shadow: 0 5px 15px rgba(0,0,0,0.05); white-space: nowrap; border: 1px solid rgba(107,45,92,0.1);
             text-align: center; width: 100%; transition: opacity 0.3s ease;
         }
 
         .reveal-banner {
-            position: absolute; top: -25px; background: white; padding: 10px 30px; border: 2.5px dashed var(--accent-maroon);
-            font-family: 'Alex Brush', cursive; font-size: 2.3rem; font-weight: bold; color: var(--accent-maroon);
+            position: absolute; top: -25px; background: white; padding: 10px 35px; border: 2.5px dashed var(--accent-maroon);
+            font-family: 'Great Vibes', cursive; font-size: 2.8rem; font-weight: bold; color: var(--accent-maroon);
             white-space: nowrap; opacity: 0; transform: scale(0.5); transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease; z-index: 1006;
             box-shadow: 0 8px 20px rgba(107,45,92,0.15);
         }
@@ -119,13 +119,13 @@
 
         .rsvp-container { padding: 80px 20px 60px 20px; max-width: 480px; margin: 0 auto; text-align: center; color: var(--text-dark); background-color: var(--bg-cream); }
         
-        .hero-hashtag { font-family: 'Alex Brush', cursive; font-size: 3.5rem; margin-bottom: 12px; color: var(--accent-maroon); }
-        .hero-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 3px; margin: 15px 0; font-weight: 400; color: var(--text-dark); }
-        .hero-details { font-size: 1.1rem; font-weight: 600; letter-spacing: 1px; color: var(--accent-maroon); line-height: 1.6; margin: 20px 0 20px 0; }
-        .hero-schedule-note { font-size: 0.9rem; line-height: 1.5; color: var(--text-dark); font-weight: 400; margin-bottom: 30px; padding: 0 10px; }
+        .hero-hashtag { font-family: 'Great Vibes', cursive; font-size: 4rem; margin-bottom: 12px; color: var(--accent-maroon); }
+        .hero-title { font-family: 'Cinzel', serif; font-size: 1.7rem; text-transform: uppercase; letter-spacing: 3px; margin: 15px 0; font-weight: 700; color: var(--text-dark); }
+        .hero-details { font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 700; letter-spacing: 1.5px; color: var(--accent-maroon); line-height: 1.6; margin: 20px 0 20px 0; }
+        .hero-schedule-note { font-size: 0.9rem; line-height: 1.6; color: var(--text-dark); font-weight: 400; margin-bottom: 35px; padding: 0 10px; }
 
-        .rsvp-deadline { color: var(--accent-maroon); font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.15rem; margin-top: 20px; margin-bottom: 35px; }
-        .rsvp-header-main { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 400; margin-bottom: 35px; border-top: 1px dashed #dcd0d2; padding-top: 35px; color: var(--text-dark); }
+        .rsvp-deadline { color: var(--accent-maroon); font-family: 'Cinzel', serif; font-weight: 600; letter-spacing: 2px; font-size: 1.1rem; margin-top: 20px; margin-bottom: 35px; }
+        .rsvp-header-main { font-family: 'Cinzel', serif; font-size: 1.4rem; font-weight: 600; letter-spacing: 1px; margin-bottom: 35px; border-top: 1px dashed #dcd0d2; padding-top: 35px; color: var(--text-dark); }
 
         .form-group { margin-bottom: 30px; text-align: left; }
         .form-group label { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px; color: #4e3f42; margin-bottom: 10px; font-weight: 600; }
@@ -144,15 +144,15 @@
 
         .submit-btn { background-color: var(--accent-maroon); color: white; border: none; width: 100%; padding: 16px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; margin-top: 15px; border-radius: 4px; box-shadow: 0 4px 10px rgba(107,45,92,0.15); -webkit-tap-highlight-color: transparent; }
         .submit-btn:hover { background-color: #542248; }
-        .footer-hashtag { margin-top: 60px; font-family: 'Alex Brush', cursive; font-size: 2.5rem; color: var(--gold-muted); }
+        .footer-hashtag { margin-top: 60px; font-family: 'Great Vibes', cursive; font-size: 3rem; color: var(--gold-muted); }
 
         @media(max-width: 480px) {
-            .hero-hashtag { font-size: 2.8rem; }
-            .hero-title { font-size: 1.4rem; letter-spacing: 2px; }
+            .hero-hashtag { font-size: 3.3rem; }
+            .hero-title { font-size: 1.35rem; letter-spacing: 1.5px; }
             .hero-details { font-size: 1rem; }
-            .rsvp-header-main { font-size: 1.3rem; }
+            .rsvp-header-main { font-size: 1.2rem; }
             .airplane-svg { width: 120px; }
-            .reveal-banner { font-size: 1.9rem; top: -15px; padding: 8px 22px; }
+            .reveal-banner { font-size: 2.3rem; top: -15px; padding: 8px 25px; }
             .lang-container { top: 12px; right: 12px; padding: 6px 12px; }
             .audio-toggle-btn { bottom: 15px; right: 15px; width: 40px; height: 40px; font-size: 1.1rem; }
         }
@@ -254,7 +254,6 @@
             if (musicToggle) musicToggle.style.display = 'flex';
         }
 
-        // Custom Dynamic Validation Logic
         function adjustPhoneValidation() {
             var country = document.getElementById('guestCountry').value;
             var phoneInput = document.getElementById('guestPhone');
