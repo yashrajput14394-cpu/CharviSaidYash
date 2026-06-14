@@ -6,10 +6,10 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>चार्वी और यश की शादी 🎉</title>
+    <title>ચાર્વી અને યશના લગ્ન 🎉</title>
     
-    <meta property="og:title" content="चार्वी और यश की शादी" />
-    <meta property="og:description" content="हम उड़ान भर रहे हैं! हमारा विमान टेकऑफ़ देखने के लिए टैप करें और अपनी उपस्थिति की पुष्टि के लिए RSVP करें। ✈️💍" />
+    <meta property="og:title" content="ચાર્વી અને યશના લગ્ન" />
+    <meta property="og:description" content="અમે ઉડાન ભરી રહ્યા છીએ! અમારું પ્લેન ટેકઓફ જોવા માટે ટેપ કરો અને તમારી હાજરીની પુષ્ટિ કરવા માટે RSVP કરો. ✈️💍" />
     <meta property="og:image" content="https://yashrajput14394-cpu.github.io/CharviSaidYash/wedding_bg_mobile.jpg" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://yashrajput14394-cpu.github.io/CharviSaidYash/hi.html" />
@@ -120,7 +120,8 @@
         .rsvp-container { padding: 80px 20px 60px 20px; max-width: 480px; margin: 0 auto; text-align: center; color: var(--text-dark); background-color: var(--bg-cream); }
         
         .hero-hashtag { font-family: 'Great Vibes', cursive; font-size: 4rem; margin-bottom: 12px; color: var(--accent-maroon); }
-        .hero-title { font-family: 'Cinzel', serif; font-size: 1.7rem; text-transform: uppercase; letter-spacing: 3px; margin: 15px 0; font-weight: 700; color: var(--text-dark); }
+        .hero-title { font-family: 'Cinzel', serif; font-size: 1.7rem; text-transform: uppercase; letter-spacing: 3px; margin: 15px 0 5px 0; font-weight: 700; color: var(--text-dark); }
+        .hero-subtitle { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; letter-spacing: 1px; margin-bottom: 20px; color: #554446; font-weight: 400; }
         .hero-details { font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 700; letter-spacing: 1.5px; color: var(--accent-maroon); line-height: 1.6; margin: 20px 0 20px 0; }
         .hero-schedule-note { font-size: 0.9rem; line-height: 1.6; color: var(--text-dark); font-weight: 400; margin-bottom: 35px; padding: 0 10px; }
 
@@ -151,10 +152,10 @@
             pointer-events: none; z-index: 99999; display: none;
         }
 
-        /* Mobile Viewport Sizing Logic System Fix */
         @media(max-width: 480px) {
-            .hero-hashtag { font-size: 11vw; } /* Uses fluid sizing to prevent tracking layout overflow errors */
-            .hero-title { font-size: 1.35rem; letter-spacing: 1.5px; }
+            .hero-hashtag { font-size: 11vw; }
+            .hero-title { font-size: 1.5rem; letter-spacing: 1.5px; margin: 12px 0 3px 0; }
+            .hero-subtitle { font-size: 0.95rem; letter-spacing: 1px; margin-bottom: 15px; }
             .hero-details { font-size: 1rem; }
             .rsvp-header-main { font-size: 1.2rem; }
             .airplane-svg { width: 120px; }
@@ -200,7 +201,8 @@
 
         <section class="rsvp-container">
             <div class="hero-hashtag">#CharviSaidYash</div>
-            <h1 class="hero-title">चार्वी और यश की शादी</h1>
+            <h1 class="hero-title">Charvi & Yash</h1>
+            <div class="hero-subtitle">are tying the knot</div>
             <p class="hero-details">5 – 6 दिसंबर 2026 <br> सूरत, गुजरात, भारत</p>
             <p class="hero-schedule-note">उत्सव 5 तारीख की सुबह से शुरू होकर 6 तारीख की दोपहर तक विवाह की रस्मों के बाद तक जारी रहेंगे। हम चाहेंगे कि आप हर पल का हिस्सा बनें, इसलिए कृपया उसी के अनुसार अपनी यात्रा की योजना बनाएं।</p>
 
@@ -393,6 +395,16 @@
                     return;
                 }
 
+                // Strict Mode of Travel Validation
+                if (document.getElementById('attendingRadio').checked) {
+                    var travelVal = document.getElementById('travelMode').value;
+                    if (travelVal === "Not Specified") {
+                        e.preventDefault();
+                        alert('कृपया सूरत की यात्रा का साधन चुनें।');
+                        return;
+                    }
+                }
+
                 e.preventDefault();
                 var submitBtn = document.getElementById('submitBtn');
                 submitBtn.disabled = true;
@@ -422,7 +434,7 @@
                             document.getElementById('travelGroup').style.display = 'none';
                             adjustPhoneValidation();
                             submitBtn.disabled = false;
-                            submitBtn.innerText = 'उपस्थिति की पुष्टि करें';
+                            submitBtn.innerText = 'उपстояние की पुष्टि करें';
                         }, 600);
                     })
                     .catch(function(err) {
