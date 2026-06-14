@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Charvi & Yash Wedding 🎉</title>
+    
+    <meta property="og:title" content=" Wedding of Charvi & Yash" />
+    <meta property="og:description" content="We are taking off! Tap to watch our airplane takeoff and RSVP to confirm your presence. ✈️💍" />
+    <meta property="og:image" content="https://yashrajput14394-cpu.github.io/CharviSaidYash/wedding_bg_mobile.jpg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yashrajput14394-cpu.github.io/CharviSaidYash/" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-sky: #fae0e4;
+            --bg-cream: #fae0e4;
+            --text-dark: #2c2525;
+            --accent-maroon: #6b2d5c;
+            --gold-muted: #d4a373;
+            --pastel-pink-dark: #f7cad0;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg-sky); font-family: 'Montserrat', sans-serif; overflow-x: hidden; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+        .lang-container {
+            position: fixed; top: 20px; right: 20px; z-index: 9999;
+            background: #ffffff; padding: 8px 16px;
+            border-radius: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+            display: flex; gap: 10px; font-size: 0.8rem; font-weight: 600;
+            border: 1px solid var(--accent-maroon); align-items: center;
+        }
+        .lang-btn {
+            color: #665555; text-decoration: none; transition: color 0.3s, transform 0.2s;
+            font-family: inherit; font-size: inherit; padding: 2px 4px; -webkit-tap-highlight-color: transparent;
+        }
+        .lang-btn:hover, .lang-btn.active { color: var(--accent-maroon); transform: scale(1.05); }
+        .lang-divider { color: #e0d0d0; font-weight: 300; }
+
+        #intro-screen {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: var(--bg-sky); display: flex; flex-direction: column;
+            justify-content: center; align-items: center; z-index: 1000;
+            overflow: hidden;
+        }
+
+        .flight-container { 
+            position: relative; display: flex; flex-direction: column; 
+            align-items: center; justify-content: center; cursor: pointer; 
+            z-index: 1005; -webkit-tap-highlight-color: transparent; padding: 20px;
+            width: 100%; max-width: 350px;
+        }
+        .airplane-svg { width: 140px; height: auto; fill: var(--accent-maroon); filter: drop-shadow(0 10px 15px rgba(107,45,92,0.15)); margin-bottom: 25px; }
+        
+        .takeoff-banner {
+            background: white; padding: 12px 28px; border-radius: 50px;
+            font-family: 'Playfair Display', serif; font-style: italic; font-size: 1rem; color: var(--accent-maroon);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); white-space: nowrap; border: 1px solid rgba(107,45,92,0.1);
+            text-align: center; width: 100%;
+        }
+
+        .reveal-banner {
+            position: absolute; top: -10px; background: white; padding: 8px 25px; border: 2px dashed var(--accent-maroon);
+            font-family: 'Alex Brush', cursive; font-size: 1.8rem; color: var(--accent-maroon);
+            white-space: nowrap; opacity: 0; transform: scale(0.6); transition: transform 0.5s ease, opacity 0.4s ease; z-index: 1006;
+        }
+
+        .launch-text { color: #8a7578; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; margin-top: 25px; text-align: center; }
+
+        .flight-container.takeoff { animation: flyAwayOut 1.2s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards; }
+        .flight-container.takeoff .takeoff-banner, .flight-container.takeoff .launch-text { opacity: 0; }
+        .flight-container.takeoff .reveal-banner { opacity: 1; transform: scale(1); }
+
+        @keyframes flyAwayOut { 
+            0% { transform: translate(0, 0) rotate(0deg) scale(1); } 
+            100% { transform: translate(100vw, -100vh) rotate(-20deg) scale(0.5); } 
+        }
+
+        #main-content { background-color: var(--bg-cream); min-height: 100vh; display: none; opacity: 0; transition: opacity 0.4s ease; }
+        
+        .hero {
+            position: relative; height: 100vh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; padding: 24px;
+            background: linear-gradient(rgba(0, 0, 0, 0.42), rgba(0, 0, 0, 0.42)), url('wedding_bg_desktop.jpg') no-repeat center top/contain;
+            background-color: var(--pastel-pink-dark);
+            max-width: 800px; margin: 0 auto; box-shadow: 0 0 30px rgba(0,0,0,0.08);
+        }
+
+        @media(max-width: 768px) {
+            .hero {
+                background: linear-gradient(rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.38)), url('wedding_bg_mobile.jpg') no-repeat center center/cover;
+                max-width: 100%; box-shadow: none;
+            }
+        }
+
+        .hero-hashtag { font-family: 'Alex Brush', cursive; font-size: 3.5rem; margin-bottom: 10px; text-shadow: 0 2px 8px rgba(0,0,0,0.45); }
+        .hero-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 3px; margin: 12px 0; font-weight: 400; text-shadow: 0 2px 8px rgba(0,0,0,0.45); }
+        .hero-details { font-size: 0.95rem; margin: 8px 0; font-weight: 300; letter-spacing: 1px; text-shadow: 0 1px 5px rgba(0,0,0,0.45); }
+
+        .btn-confirm { margin-top: 30px; background-color: transparent; color: white; border: 1px solid white; padding: 12px 30px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; text-decoration: none; transition: background 0.3s; -webkit-tap-highlight-color: transparent; }
+        .btn-confirm:hover { background-color: white; color: var(--text-dark); }
+
+        .rsvp-container { padding: 60px 20px; max-width: 480px; margin: 0 auto; text-align: center; color: var(--text-dark); background-color: var(--bg-cream); }
+        .rsvp-meta-header { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: #776666; margin-bottom: 6px; }
+        .rsvp-deadline { color: var(--accent-maroon); font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.15rem; margin-bottom: 35px; }
+        .rsvp-header-main { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 400; margin-bottom: 35px; }
+
+        .form-group { margin-bottom: 30px; text-align: left; }
+        .form-group label { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px; color: #4e3f42; margin-bottom: 10px; font-weight: 600; }
+        
+        .form-group input[type="text"], .form-group input[type="tel"], .form-group select {
+            width: 100%; padding: 12px 0; border: none; border-bottom: 1px solid #dcd0d2; background: transparent; font-size: 1rem; font-family: inherit; outline: none; color: var(--text-dark); border-radius: 0; -webkit-appearance: none;
+        }
+        .form-group select {
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'><path d='M0 3l5 5 5-5z' fill='%23222'/></svg>");
+            background-repeat: no-repeat; background-position: right center; padding-right: 20px;
+        }
+
+        .radio-container { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
+        .radio-label { display: flex; align-items: center; gap: 10px; font-size: 0.95rem; cursor: pointer; line-height: 1.4; -webkit-tap-highlight-color: transparent; }
+        .radio-label input { accent-color: var(--accent-maroon); width: 22px; height: 22px; flex-shrink: 0; }
+
+        .submit-btn { background-color: var(--accent-maroon); color: white; border: none; width: 100%; padding: 16px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; margin-top: 15px; border-radius: 4px; box-shadow: 0 4px 10px rgba(107,45,92,0.15); -webkit-tap-highlight-color: transparent; }
+        .submit-btn:hover { background-color: #542248; }
+        .footer-hashtag { margin-top: 60px; font-family: 'Alex Brush', cursive; font-size: 2.5rem; color: var(--gold-muted); }
+
+        @media(max-width: 480px) {
+            .hero-hashtag { font-size: 2.8rem; }
+            .hero-title { font-size: 1.4rem; letter-spacing: 2px; }
+            .hero-details { font-size: 0.85rem; }
+            .rsvp-header-main { font-size: 1.6rem; }
+            .airplane-svg { width: 120px; }
+            .reveal-banner { font-size: 1.5rem; top: -5px; }
+            .lang-container { top: 12px; right: 12px; padding: 6px 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="lang-container">
+        <a href="index.html" class="lang-btn">English</a>
+        <span class="lang-divider">|</span>
+        <a href="hi.html" class="lang-btn active">हिन्दी</a>
+        <span class="lang-divider">|</span>
+        <a href="gu.html" class="lang-btn">ગુજરાતી</a>
+    </div>
+
+    <div id="intro-screen">
+        <div class="flight-container" id="flightContainer">
+            <div class="reveal-banner">#CharviSaidYash</div>
+            <svg class="airplane-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+            </svg>
+            <div class="takeoff-banner">चार्वी चली यश के साथ उड़ान भरने</div>
+            <div class="launch-text">खोलने के लिए कहीं भी टैप करें</div>
+        </div>
+    </div>
+
+    <main id="main-content">
+        <section class="hero">
+            <div class="hero-hashtag">#CharviSaidYash</div>
+            <h1 class="hero-title">चार्वी और यश का विवाह</h1>
+            <p class="hero-details">5 – 6 दिसंबर 2026 &bull; सूरत, गुजरात, भारत</p>
+            <p class="hero-details" style="color: #fae0e4; font-size: 0.85rem; line-height: 1.6;">5 तारीख: हल्दी, मेहंदी और संगीत <br> 6 तारीख: शादी</p>
+            <a href="#rsvpFormSection" class="btn-confirm">उपस्थिति की पुष्टि करें</a>
+        </section>
+
+        <section id="rsvpFormSection" class="rsvp-container">
+            <p class="rsvp-meta-header">चार्वी और यश का विवाह</p>
+            <p class="rsvp-deadline">RSVP की अंतिम तिथि 18 नवंबर 2026</p>
+            <h2 class="rsvp-header-main">अपनी उपस्थिति दर्ज करें</h2>
+
+            <form id="weddingForm">
+                <div class="form-group">
+                    <label for="guestName">पूरा नाम</label>
+                    <input type="text" id="guestName" placeholder="आपका नाम" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="guestPhone">मोबाइल नंबर</label>
+                    <input type="tel" id="guestPhone" placeholder="10 अंकों का मोबाइल नंबर" pattern="[0-9]{10}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>क्या आप शादी में शामिल होंगे?</label>
+                    <div class="radio-container">
+                        <label class="radio-label"><input type="radio" name="attendance" value="Attending" id="attendingRadio" checked> <span>आने के लिए बेहद उत्साहित हूँ! 🎉</span></label>
+                        <label class="radio-label"><input type="radio" name="attendance" value="Not Attending" id="notAttendingRadio"> <span>माफ़ करें, मैं शामिल नहीं हो पाऊँगा/पाऊँगी 😔</span></label>
+                    </div>
+                </div>
+
+                <div class="form-group" id="travelGroup">
+                    <label for="travelMode">आप सूरत कैसे आ रहे हैं?</label>
+                    <select id="travelMode">
+                        <option value="Not Specified">यात्रा का साधन चुनें</option>
+                        <option value="Airways">हवाई यात्रा ✈️</option>
+                        <option value="Railways">रेल यात्रा 🚂</option>
+                        <option value="Roadways">सड़क मार्ग 🚗</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">उपस्थिति की पुष्टि करें</button>
+            </form>
+            <div class="footer-hashtag">#CharviSaidYash</div>
+        </section>
+    </main>
+
+    <script>
+        const introScreen = document.getElementById('intro-screen');
+        const flightContainer = document.getElementById('flightContainer');
+        const mainContent = document.getElementById('main-content');
+        const travelGroup = document.getElementById('travelGroup');
+        const notAttendingRadio = document.getElementById('notAttendingRadio');
+        const attendingRadio = document.getElementById('attendingRadio');
+        let appLaunched = false;
+
+        function displayMainApp() {
+            if (appLaunched) return;
+            appLaunched = true;
+            
+            flightContainer.classList.add('takeoff');
+            
+            setTimeout(() => {
+                introScreen.style.transform = 'translateY(-100vh)';
+                introScreen.style.opacity = '0';
+                mainContent.style.display = 'block';
+            }, 500);
+            
+            setTimeout(() => {
+                mainContent.style.opacity = '1';
+                introScreen.style.display = 'none';
+            }, 900);
+        }
+
+        flightContainer.addEventListener('click', displayMainApp);
+        flightContainer.addEventListener('touchstart', displayMainApp, {passive: true});
+
+        notAttendingRadio.addEventListener('change', () => { if(notAttendingRadio.checked) travelGroup.style.display = 'none'; });
+        attendingRadio.addEventListener('change', () => { if(attendingRadio.checked) travelGroup.style.display = 'block'; });
+
+        const form = document.getElementById('weddingForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxdqEZbF_nDhLb0JfKL4nVNuOxatWzQPqTSmXIqmRaWTWrTnbOWyAJk5C6CYAR3ZgpcaQ/exec';
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            submitBtn.disabled = true;
+            submitBtn.innerText = 'भेजा जा रहा है...';
+
+            const formData = new FormData();
+            formData.append('guestName', document.getElementById('guestName').value);
+            formData.append('guestPhone', document.getElementById('guestPhone').value);
+            formData.append('attendance', document.querySelector('input[name="attendance"]:checked').value);
+            
+            const travelSelection = notAttendingRadio.checked ? "N/A" : document.getElementById('travelMode').value;
+            formData.append('travelMode', travelSelection);
+
+            fetch(scriptURL, { method: 'POST', body: formData})
+                .then(response => {
+                    submitBtn.innerText = 'धन्यवाद!';
+                    alert('हम आपका स्वागत करने के लिए उत्साहित हैं! 🎉');
+                    form.reset();
+                    travelGroup.style.display = 'block';
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = 'उपस्थिति की पुष्टि करें';
+                })
+                .catch(error => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = 'उपस्थिति की पुष्टि करें';
+                    alert('सबमिट करने में त्रुटि। कृपया पुनः प्रयास करें।');
+                });
+        });
+    </script>
+</body>
+</html>
