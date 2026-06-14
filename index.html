@@ -105,16 +105,8 @@
             max-width: 800px; margin: 0 auto;
         }
 
-        .hero-second {
-            position: relative; height: 100vh; width: 100%;
-            background: url('second_bg_desktop.jpg') no-repeat center top/contain;
-            background-color: var(--pastel-pink-dark);
-            max-width: 800px; margin: 0 auto;
-        }
-
         @media(max-width: 768px) {
             .hero-first { background: url('wedding_bg_mobile.jpg') no-repeat center center/cover; max-width: 100%; }
-            .hero-second { background: url('second_bg_mobile.jpg') no-repeat center center/cover; max-width: 100%; }
         }
 
         .scroll-prompt {
@@ -134,7 +126,7 @@
 
         .rsvp-meta-header { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: #776666; margin-top: 20px; margin-bottom: 6px; }
         .rsvp-deadline { color: var(--accent-maroon); font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.15rem; margin-bottom: 35px; }
-        .rsvp-header-main { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 400; margin-bottom: 35px; border-top: 1px dashed #dcd0d2; padding-top: 35px; }
+        .rsvp-header-main { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 400; margin-bottom: 35px; border-top: 1px dashed #dcd0d2; padding-top: 35px; color: var(--text-dark); }
 
         .form-group { margin-bottom: 30px; text-align: left; }
         .form-group label { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px; color: #4e3f42; margin-bottom: 10px; font-weight: 600; }
@@ -159,7 +151,7 @@
             .hero-hashtag { font-size: 2.8rem; }
             .hero-title { font-size: 1.4rem; letter-spacing: 2px; }
             .hero-details { font-size: 0.85rem; }
-            .rsvp-header-main { font-size: 1.6rem; }
+            .rsvp-header-main { font-size: 1.3rem; }
             .airplane-svg { width: 120px; }
             .reveal-banner { font-size: 1.9rem; top: -15px; padding: 8px 22px; }
             .lang-container { top: 12px; right: 12px; padding: 6px 12px; }
@@ -199,10 +191,6 @@
             <div class="scroll-prompt">Scroll Down ⬇️</div>
         </section>
 
-        <section class="hero-second">
-            <div class="scroll-prompt">Scroll Down for Details ⬇️</div>
-        </section>
-
         <section class="rsvp-container">
             <div class="hero-hashtag">#CharviSaidYash</div>
             <h1 class="hero-title">Wedding of Charvi & Yash</h1>
@@ -210,8 +198,8 @@
             <p class="event-schedule">5th: Haldi, Mehendi & Sangeet <br> 6th: Wedding</p>
 
             <p class="rsvp-meta-header">Wedding Invitation</p>
-            <p class="rsvp-deadline">RSVP BY 18 November 2026</p>
-            <h2 class="rsvp-header-main">Confirm Your Presence</h2>
+            <p class="rsvp-deadline">RSVP BY 30 August 2026</p>
+            <h2 class="rsvp-header-main">Please join us in our best times.</h2>
 
             <form id="weddingForm">
                 <div class="form-group">
@@ -227,18 +215,18 @@
                 <div class="form-group">
                     <label>Will you be attending?</label>
                     <div class="radio-container">
-                        <label class="radio-label"><input type="radio" name="attendance" value="Attending" id="attendingRadio" checked onclick="document.getElementById('travelGroup').style.display='block'"> <span>Super Excited To Be There! 🎉</span></label>
+                        <label class="radio-label"><input type="radio" name="attendance" value="Attending" id="attendingRadio" onclick="document.getElementById('travelGroup').style.display='block'"> <span>Super Excited To Be There! 🎉</span></label>
                         <label class="radio-label"><input type="radio" name="attendance" value="Not Attending" id="notAttendingRadio" onclick="document.getElementById('travelGroup').style.display='none'"> <span>Sorry, I won't be able to join 😔</span></label>
                     </div>
                 </div>
 
-                <div class="form-group" id="travelGroup">
+                <div class="form-group" id="travelGroup" style="display: none;">
                     <label for="travelMode">How are you travelling to Surat?</label>
                     <select id="travelMode">
                         <option value="Not Specified">Select Mode of Transport</option>
-                        <option value="Airways">Airways ✈️</option>
-                        <option value="Railways">Railways 🚂</option>
-                        <option value="Roadways">Roadways 🚗</option>
+                        <option value="Flight">Flight ✈️</option>
+                        <option value="Train">Train 🚂</option>
+                        <option value="Road">Road 🚗</option>
                     </select>
                 </div>
 
@@ -299,6 +287,13 @@
         var form = document.getElementById('weddingForm');
         if(form) {
             form.addEventListener('submit', function(e) {
+                var attendanceRadio = document.querySelector('input[name="attendance"]:checked');
+                if(!attendanceRadio) {
+                    e.preventDefault();
+                    alert('Please select whether you will be attending.');
+                    return;
+                }
+
                 e.preventDefault();
                 var submitBtn = document.getElementById('submitBtn');
                 submitBtn.disabled = true;
@@ -307,7 +302,7 @@
                 var formData = new FormData();
                 formData.append('guestName', document.getElementById('guestName').value);
                 formData.append('guestPhone', document.getElementById('guestPhone').value);
-                formData.append('attendance', document.querySelector('input[name="attendance"]:checked').value);
+                formData.append('attendance', attendanceRadio.value);
                 
                 var travelSelection = document.getElementById('notAttendingRadio').checked ? "N/A" : document.getElementById('travelMode').value;
                 formData.append('travelMode', travelSelection);
@@ -317,7 +312,7 @@
                         submitBtn.innerText = 'Thank You!';
                         alert('We are excited to welcome you! 🎉');
                         form.reset();
-                        document.getElementById('travelGroup').style.display = 'block';
+                        document.getElementById('travelGroup').style.display = 'none';
                         submitBtn.disabled = false;
                         submitBtn.innerText = 'Confirm Attendance';
                     })
