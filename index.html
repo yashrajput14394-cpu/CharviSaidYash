@@ -146,19 +146,19 @@
         .submit-btn:hover { background-color: #542248; }
         .footer-hashtag { margin-top: 60px; font-family: 'Great Vibes', cursive; font-size: 3rem; color: var(--gold-muted); }
 
-        /* Canvas for Cracker Burst Elements */
         #celebrationCanvas {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none; z-index: 99999; display: none;
         }
 
+        /* Mobile Viewport Sizing Logic System Fix */
         @media(max-width: 480px) {
-            .hero-hashtag { font-size: 3.3rem; }
+            .hero-hashtag { font-size: 11vw; } /* Uses fluid sizing to prevent tracking layout overflow errors */
             .hero-title { font-size: 1.35rem; letter-spacing: 1.5px; }
             .hero-details { font-size: 1rem; }
             .rsvp-header-main { font-size: 1.2rem; }
             .airplane-svg { width: 120px; }
-            .reveal-banner { font-size: 2.3rem; top: -15px; padding: 8px 25px; }
+            .reveal-banner { font-size: 8vw; top: -15px; padding: 8px 15px; white-space: normal; width: 90%; text-align: center; }
             .lang-container { top: 12px; right: 12px; padding: 6px 12px; }
             .audio-toggle-btn { bottom: 15px; right: 15px; width: 40px; height: 40px; font-size: 1.1rem; }
         }
@@ -314,7 +314,6 @@
             }
         }
 
-        /* Crackers Animation Core System */
         function triggerCrackerBurst() {
             var canvas = document.getElementById('celebrationCanvas');
             var ctx = canvas.getContext('2d');
@@ -344,7 +343,6 @@
                 }
             }
 
-            // Launch clusters from multi-anchor points across viewport width
             createBurst(width * 0.2, height * 0.4);
             createBurst(width * 0.5, height * 0.3);
             createBurst(width * 0.8, height * 0.4);
@@ -361,7 +359,7 @@
 
                     p.x += p.vx;
                     p.y += p.vy;
-                    p.vy += 0.08; // subtle simulated gravity fallback
+                    p.vy += 0.08;
                     p.alpha -= p.decay;
 
                     if (p.alpha > 0) {
@@ -415,9 +413,7 @@
                             if (musicToggle) musicToggle.innerHTML = '🔇';
                         }
                         
-                        // Fire animation on successful network processing loop context
                         triggerCrackerBurst();
-                        
                         submitBtn.innerText = 'Thank You!';
                         
                         setTimeout(function() {
