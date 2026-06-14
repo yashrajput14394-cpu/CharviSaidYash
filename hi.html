@@ -204,7 +204,15 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="guestPhone">मोबाइल नंबर</label>
+                    <label for="guestCountry">देश (Country)</label>
+                    <select id="guestCountry" onchange="adjustPhoneValidation()">
+                        <option value="India">भारत (India)</option>
+                        <option value="Other">भारत के बाहर (Outside India)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="guestPhone" id="phoneLabel">मोबाइल नंबर</label>
                     <input type="tel" id="guestPhone" placeholder="10 अंकों का मोबाइल नंबर" pattern="[0-9]{10}" required>
                 </div>
 
@@ -237,12 +245,27 @@
         var bgMusic = document.getElementById('bgMusic');
         var musicToggle = document.getElementById('musicToggle');
 
-        // CACHE PROTECTION: Check if they already unlocked the site in this session
         if (sessionStorage.getItem('weddingUnlocked') === 'true') {
             var intro = document.getElementById('intro-screen');
             if (intro) intro.style.display = 'none';
             appLaunched = true;
             if (musicToggle) musicToggle.style.display = 'flex';
+        }
+
+        function adjustPhoneValidation() {
+            var country = document.getElementById('guestCountry').value;
+            var phoneInput = document.getElementById('guestPhone');
+            var phoneLabel = document.getElementById('phoneLabel');
+            
+            if (country === 'India') {
+                phoneInput.placeholder = "10 अंकों का मोबाइल नंबर";
+                phoneInput.pattern = "[0-9]{10}";
+                phoneLabel.innerText = "मोबाइल नंबर";
+            } else {
+                phoneInput.placeholder = "अंतरराष्ट्रीय नंबर (जैसे: +1234567890)";
+                phoneInput.removeAttribute('pattern');
+                phoneLabel.innerText = "अंतरराष्ट्रीय मोबाइल नंबर";
+            }
         }
 
         function launchWeddingWebsite() {
@@ -323,6 +346,7 @@
                         alert('हम आपका स्वागत करने के लिए उत्साहित हैं! 🎉');
                         form.reset();
                         document.getElementById('travelGroup').style.display = 'none';
+                        adjustPhoneValidation();
                         submitBtn.disabled = false;
                         submitBtn.innerText = 'उपस्थिति की पुष्टि करें';
                     })
