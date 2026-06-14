@@ -8,7 +8,7 @@
     <meta http-equiv="Expires" content="0">
     <title>Charvi & Yash Wedding 🎉</title>
     
-    <meta property="og:title" content=" Wedding of Charvi & Yash" />
+    <meta property="og:title" content="Wedding of Charvi & Yash" />
     <meta property="og:description" content="We are taking off! Tap to watch our airplane takeoff and RSVP to confirm your presence. ✈️💍" />
     <meta property="og:image" content="https://yashrajput14394-cpu.github.io/CharviSaidYash/wedding_bg_mobile.jpg" />
     <meta property="og:type" content="website" />
@@ -63,7 +63,7 @@
         .takeoff-banner {
             background: white; padding: 12px 28px; border-radius: 50px;
             font-family: 'Playfair Display', serif; font-style: italic; font-size: 1rem; color: var(--accent-maroon);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05); white-space: nowrap; border: 1px solid rgba(107,45,92,0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.055); white-space: nowrap; border: 1px solid rgba(107,45,92,0.1);
             text-align: center; width: 100%; transition: opacity 0.3s ease;
         }
 
@@ -89,42 +89,43 @@
 
         #main-content { background-color: var(--bg-cream); min-height: 100vh; display: none; opacity: 0; transition: opacity 0.4s ease; }
         
-        .hero {
-            position: relative; height: 100vh;
-            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; padding: 24px;
+        .hero-first {
+            position: relative; height: 100vh; width: 100%;
             background: url('wedding_bg_desktop.jpg') no-repeat center top/contain;
             background-color: var(--pastel-pink-dark);
-            max-width: 800px; margin: 0 auto; box-shadow: 0 0 30px rgba(0,0,0,0.08);
+            max-width: 800px; margin: 0 auto;
+        }
+
+        .hero-second {
+            position: relative; height: 100vh; width: 100%;
+            background: url('second_bg_desktop.jpg') no-repeat center top/contain;
+            background-color: #f0b4bf;
+            max-width: 800px; margin: 0 auto;
         }
 
         @media(max-width: 768px) {
-            .hero {
-                background: url('wedding_bg_mobile.jpg') no-repeat center center/cover;
-                max-width: 100%; box-shadow: none;
-            }
+            .hero-first { background: url('wedding_bg_mobile.jpg') no-repeat center center/cover; max-width: 100%; }
+            .hero-second { background: url('second_bg_mobile.jpg') no-repeat center center/cover; max-width: 100%; }
         }
 
-        /* Wrap text in scroll-reveal container so it hidden initially */
-        .scroll-reveal-box {
-            opacity: 0; transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-            padding: 20px; width: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0, 0, 0, 0.4) 20%, rgba(0, 0, 0, 0.4) 80%, rgba(0,0,0,0));
+        .scroll-prompt {
+            position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+            color: white; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px;
+            opacity: 0.8; pointer-events: none; text-shadow: 0 2px 5px rgba(0,0,0,0.6);
+            animation: pulseArrow 2s infinite; z-index: 10;
         }
+        @keyframes pulseArrow { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 8px); } }
 
-        .scroll-reveal-box.visible { opacity: 1; transform: translateY(0); }
+        .rsvp-container { padding: 80px 20px 60px 20px; max-width: 480px; margin: 0 auto; text-align: center; color: var(--text-dark); background-color: var(--bg-cream); }
+        
+        .hero-hashtag { font-family: 'Alex Brush', cursive; font-size: 3.5rem; margin-bottom: 12px; color: var(--accent-maroon); }
+        .hero-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 3px; margin: 15px 0; font-weight: 400; color: var(--text-dark); }
+        .hero-details { font-size: 0.95rem; margin: 10px 0; font-weight: 400; letter-spacing: 1px; color: #4e3f42; }
+        .event-schedule { color: var(--accent-maroon); font-size: 0.9rem; line-height: 1.8; margin: 20px 0 40px 0; font-weight: 600; }
 
-        .hero-hashtag { font-family: 'Alex Brush', cursive; font-size: 3.5rem; margin-bottom: 10px; text-shadow: 0 2px 8px rgba(0,0,0,0.45); }
-        .hero-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 3px; margin: 12px 0; font-weight: 400; text-shadow: 0 2px 8px rgba(0,0,0,0.45); }
-        .hero-details { font-size: 0.95rem; margin: 8px 0; font-weight: 300; letter-spacing: 1px; text-shadow: 0 1px 5px rgba(0,0,0,0.45); }
-
-        .btn-confirm { margin-top: 30px; background-color: transparent; color: white; border: 1px solid white; padding: 12px 30px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.3s; -webkit-tap-highlight-color: transparent; }
-        .btn-confirm:hover { background-color: white; color: var(--text-dark); }
-
-        .rsvp-container { padding: 60px 20px; max-width: 480px; margin: 0 auto; text-align: center; color: var(--text-dark); background-color: var(--bg-cream); }
-        .rsvp-meta-header { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: #776666; margin-bottom: 6px; }
+        .rsvp-meta-header { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: #776666; margin-top: 20px; margin-bottom: 6px; }
         .rsvp-deadline { color: var(--accent-maroon); font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.15rem; margin-bottom: 35px; }
-        .rsvp-header-main { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 400; margin-bottom: 35px; }
+        .rsvp-header-main { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 400; margin-bottom: 35px; border-top: 1px dashed #dcd0d2; padding-top: 35px; }
 
         .form-group { margin-bottom: 30px; text-align: left; }
         .form-group label { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px; color: #4e3f42; margin-bottom: 10px; font-weight: 600; }
@@ -145,16 +146,6 @@
         .submit-btn:hover { background-color: #542248; }
         .footer-hashtag { margin-top: 60px; font-family: 'Alex Brush', cursive; font-size: 2.5rem; color: var(--gold-muted); }
 
-        /* Bounce prompt indicator styling */
-        .scroll-prompt {
-            position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
-            color: white; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px;
-            opacity: 0; transition: opacity 0.5s ease; pointer-events: none;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.6); animation: pulseArrow 2s infinite;
-        }
-        .scroll-prompt.visible { opacity: 0.8; }
-        @keyframes pulseArrow { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 8px); } }
-
         @media(max-width: 480px) {
             .hero-hashtag { font-size: 2.8rem; }
             .hero-title { font-size: 1.4rem; letter-spacing: 2px; }
@@ -174,8 +165,6 @@
             const travelGroup = document.getElementById('travelGroup');
             const notAttendingRadio = document.getElementById('notAttendingRadio');
             const attendingRadio = document.getElementById('attendingRadio');
-            const revealBox = document.getElementById('revealBox');
-            const scrollPrompt = document.getElementById('scrollPrompt');
             let appLaunched = false;
 
             function displayMainApp() {
@@ -192,21 +181,9 @@
                 
                 setTimeout(() => {
                     mainContent.style.opacity = '1';
-                    introScreen.style.display = 'none';
-                    if(scrollPrompt) scrollPrompt.classList.add('visible');
+                    introScreen.style.none;
                 }, 1200);
             }
-
-            // Reveal contents on scroll
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 40) {
-                    if(revealBox) revealBox.classList.add('visible');
-                    if(scrollPrompt) scrollPrompt.classList.remove('visible');
-                } else {
-                    if(revealBox) revealBox.classList.remove('visible');
-                    if(appLaunched && scrollPrompt) scrollPrompt.classList.add('visible');
-                }
-            }, { passive: true });
 
             if(flightContainer) {
                 flightContainer.addEventListener('click', displayMainApp);
@@ -277,19 +254,21 @@
     </div>
 
     <main id="main-content">
-        <section class="hero">
-            <div class="scroll-reveal-box" id="revealBox">
-                <div class="hero-hashtag">#CharviSaidYash</div>
-                <h1 class="hero-title">चार्वी और यश का विवाह</h1>
-                <p class="hero-details">5 – 6 दिसंबर 2026 &bull; सूरत, गुजरात, भारत</p>
-                <p class="hero-details" style="color: #fae0e4; font-size: 0.85rem; line-height: 1.6;">5 तारीख: हल्दी, मेहंदी और संगीत <br> 6 तारीख: शादी</p>
-                <a href="#rsvpFormSection" class="btn-confirm">उपस्थिति की पुष्टि करें</a>
-            </div>
-            <div class="scroll-prompt" id="scrollPrompt">नीचे स्क्रॉल करें ⬇️</div>
+        <section class="hero-first">
+            <div class="scroll-prompt">नीचे स्क्रॉल करें ⬇️</div>
         </section>
 
-        <section id="rsvpFormSection" class="rsvp-container">
-            <p class="rsvp-meta-header">चार्वी और यश का विवाह</p>
+        <section class="hero-second">
+            <div class="scroll-prompt">विवरण के लिए नीचे स्क्रॉल करें ⬇️</div>
+        </section>
+
+        <section class="rsvp-container">
+            <div class="hero-hashtag">#CharviSaidYash</div>
+            <h1 class="hero-title">चार्वी और यश का विवाह</h1>
+            <p class="hero-details">5 – 6 दिसंबर 2026 &bull; सूरत, गुजरात, भारत</p>
+            <p class="event-schedule">5 तारीख: हल्दी, मेहंदी और संगीत <br> 6 तारीख: शादी</p>
+
+            <p class="rsvp-meta-header">विवाह आमंत्रण</p>
             <p class="rsvp-deadline">RSVP की अंतिम तिथि 18 नवंबर 2026</p>
             <h2 class="rsvp-header-main">अपनी उपस्थिति दर्ज करें</h2>
 
