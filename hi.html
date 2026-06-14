@@ -395,8 +395,9 @@
                     return;
                 }
 
-                // Strict Mode of Travel Validation
-                if (document.getElementById('attendingRadio').checked) {
+                var isAttending = document.getElementById('attendingRadio').checked;
+
+                if (isAttending) {
                     var travelVal = document.getElementById('travelMode').value;
                     if (travelVal === "Not Specified") {
                         e.preventDefault();
@@ -425,16 +426,22 @@
                             if (musicToggle) musicToggle.innerHTML = '🔇';
                         }
                         
-                        triggerCrackerBurst();
+                        if (isAttending) {
+                            triggerCrackerBurst();
+                        }
                         submitBtn.innerText = 'धन्यवाद!';
                         
                         setTimeout(function() {
-                            alert('हम आपका स्वागत करने के लिए उत्साहित हैं! 🎉');
+                            if (isAttending) {
+                                alert('हम आपका स्वागत करने के लिए उत्साहित हैं! 🎉');
+                            } else {
+                                alert('अफ़सोस, हमें उम्मीद है कि आप अभी भी आने का कोई रास्ता निकाल पाएंगे - यदि आपकी योजनाएँ बदलती हैं तो आप अपना RSVP बदल सकते हैं 😔');
+                            }
                             form.reset();
                             document.getElementById('travelGroup').style.display = 'none';
                             adjustPhoneValidation();
                             submitBtn.disabled = false;
-                            submitBtn.innerText = 'उपстояние की पुष्टि करें';
+                            submitBtn.innerText = 'उपस्थिति की पुष्टि करें';
                         }, 600);
                     })
                     .catch(function(err) {
