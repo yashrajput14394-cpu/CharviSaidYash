@@ -123,8 +123,7 @@
         .hero-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 3px; margin: 15px 0; font-weight: 400; color: var(--text-dark); }
         .hero-details { font-size: 1.1rem; font-weight: 600; letter-spacing: 1px; color: var(--accent-maroon); line-height: 1.6; margin: 20px 0 40px 0; }
 
-        .rsvp-meta-header { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: #776666; margin-top: 20px; margin-bottom: 6px; }
-        .rsvp-deadline { color: var(--accent-maroon); font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.15rem; margin-bottom: 35px; }
+        .rsvp-deadline { color: var(--accent-maroon); font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.15rem; margin-top: 20px; margin-bottom: 35px; }
         .rsvp-header-main { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 400; margin-bottom: 35px; border-top: 1px dashed #dcd0d2; padding-top: 35px; color: var(--text-dark); }
 
         .form-group { margin-bottom: 30px; text-align: left; }
@@ -187,7 +186,7 @@
 
     <main id="main-content">
         <section class="hero-first">
-            <div class="scroll-prompt">નીચે સ્ક્રોલ કરો ⬇️</div>
+            <div class="scroll-prompt">નીચે સ્ક્ર્રોલ કરો ⬇️</div>
         </section>
 
         <section class="rsvp-container">
@@ -195,7 +194,6 @@
             <h1 class="hero-title">ચાર્વી અને યશ ના લગ્ન</h1>
             <p class="hero-details">5 – 6 ડિસેમ્બર 2026 <br> સુરત, ગુજરાત, ભારત</p>
 
-            <p class="rsvp-meta-header">લગ્ન આમંત્રણ</p>
             <p class="rsvp-deadline">RSVP ની છેલ્લી તારીખ 30 ઓગસ્ટ 2026</p>
             <h2 class="rsvp-header-main">કૃપા કરીને અમારા શ્રેષ્ઠ સમયમાં અમારી સાથે જોડાઓ.</h2>
 
@@ -221,7 +219,7 @@
                 <div class="form-group" id="travelGroup" style="display: none;">
                     <label for="travelMode">તમે સુરત કેવી રીતે આવી રહ્યા છો?</label>
                     <select id="travelMode">
-                        <option value="Not Specified">મુસાફરીનું માધ્યમ પસંદ કરો</option>
+                        <option value="Not Specified">મુસાફરીનું માધ્યમ પસંદ કરો (Mode of Travel)</option>
                         <option value="Flight">Flight ✈️</option>
                         <option value="Train">Train 🚂</option>
                         <option value="Road">Road 🚗</option>
@@ -307,6 +305,10 @@
 
                 fetch('https://script.google.com/macros/s/AKfycbxdqEZbF_nDhLb0JfKL4nVNuOxatWzQPqTSmXIqmRaWTWrTnbOWyAJk5C6CYAR3ZgpcaQ/exec', { method: 'POST', body: formData })
                     .then(function(res) {
+                        if (bgMusic) {
+                            bgMusic.pause(); 
+                            if (musicToggle) musicToggle.innerHTML = '🔇';
+                        }
                         submitBtn.innerText = 'ધન્યવાદ!';
                         alert('અમે તમારું સ્વાગત કરવા માટે ઉત્સાહિત છીએ! 🎉');
                         form.reset();
