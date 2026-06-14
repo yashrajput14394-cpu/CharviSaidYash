@@ -204,7 +204,7 @@
             <h1 class="hero-title">Charvi & Yash</h1>
             <div class="hero-subtitle">are tying the knot</div>
             <p class="hero-details">5 – 6 ડિસેમ્બર 2026 <br> સુરત, ગુજરાત, ભારત</p>
-            <p class="hero-schedule-note">ઉત્સવ 5 તારીખની સવારથી શરૂ થશે અને 6 તારીખની બપોર સુધી લગ્નની વિધિઓ પછી પણ ચાલુ રહેશે. અમે ઈચ્છીએ છીએ કે તમે દરેક પળનો હિસ્સો બનો, તેથી કૃપા કરીને તે મુજબ તમારી મુસાફરીનું આયોજન કરો.</p>
+            <p class="hero-schedule-note">ઉત્સવ 5 તારીખની સવારથી શરૂ થશે અને 6 તારીખની બપોર સુધી લગ્નની વિધિઓ પછી પણ ચાલુ રહેશે. અમે ઈચ્છીએ છીએ કે તમે દરેક પળનો hપ્ટ હિસ્સો બનો, તેથી કૃપા કરીને તે મુજબ તમારી મુસાફરીનું આયોજન કરો.</p>
 
             <p class="rsvp-deadline">RSVP ની છેલ્લી તારીખ 30 ઓગસ્ટ 2026</p>
             <h2 class="rsvp-header-main">કૃપા કરીને અમારા સૌથી સુંદર પળોમાં અમારી સાથે જોડાઓ.</h2>
@@ -395,8 +395,9 @@
                     return;
                 }
 
-                // Strict Mode of Travel Validation
-                if (document.getElementById('attendingRadio').checked) {
+                var isAttending = document.getElementById('attendingRadio').checked;
+
+                if (isAttending) {
                     var travelVal = document.getElementById('travelMode').value;
                     if (travelVal === "Not Specified") {
                         e.preventDefault();
@@ -425,11 +426,17 @@
                             if (musicToggle) musicToggle.innerHTML = '🔇';
                         }
                         
-                        triggerCrackerBurst();
+                        if (isAttending) {
+                            triggerCrackerBurst();
+                        }
                         submitBtn.innerText = 'ધન્યવાદ!';
                         
                         setTimeout(function() {
-                            alert('અમે તમારું સ્વાગત કરવા માટે ઉત્સાહિત છીએ! 🎉');
+                            if (isAttending) {
+                                alert('અમે તમારું સ્વાગત કરવા માટે ઉત્સાહિત છીએ! 🎉');
+                            } else {
+                                alert('અરેરે, અમને આશા છે કે તમે હજી પણ આવવાનો કોઈ રસ્તો શોધી શકશો - જો તમારા પ્લાન બદલાય તો RSVP એડિટ કરી શકાય છે 😔');
+                            }
                             form.reset();
                             document.getElementById('travelGroup').style.display = 'none';
                             adjustPhoneValidation();
