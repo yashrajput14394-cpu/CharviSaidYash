@@ -257,13 +257,18 @@
             if (appLaunched) return;
             appLaunched = true;
             
-            document.getElementById('flightContainer').classList.add('takeoff');
+            var container = document.getElementById('flightContainer');
+            if (container) {
+                container.classList.add('takeoff');
+            }
             
             if (bgMusic) {
                 bgMusic.play().then(function() {
-                    musicToggle.style.display = 'flex';
-                    musicToggle.innerHTML = '🎵';
-                }).catch(function(err) { console.log("Audio block managed:", err); });
+                    if (musicToggle) {
+                        musicToggle.style.display = 'flex';
+                        musicToggle.innerHTML = '🎵';
+                    }
+                }).catch(function(err) { console.log("Audio trigger processed:", err); });
             }
             
             setTimeout(function() {
@@ -281,7 +286,7 @@
         }
 
         function toggleMusicEngine() {
-            if (!bgMusic) return;
+            if (!bgMusic || !musicToggle) return;
             if (bgMusic.paused) {
                 bgMusic.play();
                 musicToggle.innerHTML = '🎵';
@@ -291,7 +296,6 @@
             }
         }
 
-        // Form pipeline execution
         var form = document.getElementById('weddingForm');
         if(form) {
             form.addEventListener('submit', function(e) {
@@ -302,4 +306,28 @@
 
                 var formData = new FormData();
                 formData.append('guestName', document.getElementById('guestName').value);
-                formData.append('guestPhone
+                formData.append('guestPhone', document.getElementById('guestPhone').value);
+                formData.append('attendance', document.querySelector('input[name="attendance"]:checked').value);
+                
+                var travelSelection = document.getElementById('notAttendingRadio').checked ? "N/A" : document.getElementById('travelMode').value;
+                formData.append('travelMode', travelSelection);
+
+                fetch('https://script.google.com/macros/s/AKfycbxdqEZbF_nDhLb0JfKL4nVNuOxatWzQPqTSmXIqmRaWTWrTnbOWyAJk5C6CYAR3ZgpcaQ/exec', { method: 'POST', body: formData })
+                    .then(function(res) {
+                        submitBtn.innerText = 'Thank You!';
+                        alert('We are excited to welcome you! 🎉');
+                        form.reset();
+                        document.getElementById('travelGroup').style.display = 'block';
+                        submitBtn.disabled = false;
+                        submitBtn.innerText = 'Confirm Attendance';
+                    })
+                    .catch(function(err) {
+                        submitBtn.disabled = false;
+                        submitBtn.innerText = 'Confirm Attendance';
+                        alert('Error submitting form. Please try again.');
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
